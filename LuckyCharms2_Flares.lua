@@ -11,7 +11,7 @@
  
  Author: Ketutastic
  ___
- Last Modified: Tuesday, September 1st 2020, 11:28:41 am
+ Last Modified: Tuesday, September 1st 2020, 11:54:12 am
  
  Modified By: Ketutastic
  ___
@@ -38,8 +38,6 @@ LuckyCharms.Flares = {};
 
 function LuckyCharmsFlaresOnLoad(self)
 	self:RegisterEvent('ADDON_LOADED');
-	PetBattleFrame:HookScript("OnShow",function() self:Hide() end)
-	PetBattleFrame:HookScript("OnHide",function() if(LC2_Settings[LC2Profile].wmbarstatus == "show") then self:Show(); end end)
 end
 
 function LuckyCharmsFlaresOnEvent(self,event,...)
