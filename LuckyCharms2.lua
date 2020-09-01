@@ -11,7 +11,7 @@
  
  Author: Ketutastic
  ___
- Last Modified: Tuesday, September 1st 2020, 11:19:50 am
+ Last Modified: Tuesday, September 1st 2020, 11:53:51 am
  
  Modified By: Ketutastic
  ___
@@ -839,8 +839,6 @@ function LuckyCharmsOnLoad(self)
     self:RegisterEvent('GROUP_ROSTER_UPDATE');
     self:RegisterEvent('PLAYER_LOGIN');
     self:RegisterEvent('PLAYER_REGEN_ENABLED');
-    PetBattleFrame:HookScript("OnShow", function() self:Hide() end)
-    PetBattleFrame:HookScript("OnHide", function() self:Show() end)
 end
 
 function LuckyCharms.DoUpdate()
