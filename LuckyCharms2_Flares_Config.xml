@@ -1,0 +1,211 @@
+<!--
+	LuckyCharms2 r41
+	Last Changed By: neer
+	Last Changed: 2011-01-22T10:07:27Z
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="LuckyCharms2_Flares_Config.lua"/>
+	<!--Flares Config-->
+	<Frame name="LuckyCharmFlaresConfig">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Title" inherits="GameFontNormal">
+				<Anchors>
+				<Anchor point="TOP">
+				<Offset>
+				<AbsDimension x="0" y="-10"/>
+				</Offset>
+				</Anchor>
+				</Anchors>
+				</FontString>
+				<FontString name="$parent_SubTitle" inherits="GameFontNormal">
+				<Anchors>
+				<Anchor point="TOP">
+				<Offset>
+				<AbsDimension x="0" y="-25"/>
+				</Offset>
+				</Anchor>
+				</Anchors>
+				</FontString>
+				<FontString name="$parent_Scale" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_Alpha" inherits="GameFontNormal">
+				<Anchors>
+				<Anchor point="TOPLEFT">
+				<Offset>
+				<AbsDimension x="5" y="-90"/>
+				</Offset>
+				</Anchor>
+				</Anchors>
+				</FontString>
+				<FontString name="$parent_FlareDisplay" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-130"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_FlareOrientation" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-170"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_ButtonSpacing" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-220"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+     	<Slider name="$parent_SliderScale" inherits="OptionsSliderTemplate" minValue="0.1" maxValue="5.0" valueStep="0.1">
+				<Anchors>
+        	<Anchor point="TOPLEFT">
+          	<Offset>
+            	<AbsDimension x="190" y="-50" />
+            </Offset>
+          </Anchor>
+				</Anchors>
+        <Scripts>
+        	<OnLoad>
+          	_G[self:GetName().."High"]:SetText("5.0");
+						_G[self:GetName().."Low"]:SetText("0.1");
+          </OnLoad>
+          <OnValueChanged>
+          	LuckyCharms.Flares.Config.SliderScaleChange(self:GetName());
+          </OnValueChanged>
+        </Scripts>
+      </Slider>
+      <Slider name="$parent_SliderAlpha" inherits="OptionsSliderTemplate" minValue="0.0" maxValue="1.0" valueStep="0.1">
+				<Anchors>
+        	<Anchor point="TOPLEFT">
+          	<Offset>
+            	<AbsDimension x="190" y="-90" />
+            </Offset>
+          </Anchor>
+				</Anchors>
+        <Scripts>
+        	<OnLoad>
+          	_G[self:GetName().."High"]:SetText("1.0");
+						_G[self:GetName().."Low"]:SetText("0.0");
+          </OnLoad>
+          <OnValueChanged>
+          	LuckyCharms.Flares.Config.SliderAlphaChange(self:GetName());
+          </OnValueChanged>
+        </Scripts>
+      </Slider>
+      <CheckButton name="$parent_WMShow" inherits="SendMailRadioButtonTemplate">
+       <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+            	<AbsDimension  x="190" y="-130"/>
+          	</Offset>
+        	</Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+          	LuckyCharms.Flares.Config.WMRadio("show",0);
+        	</OnClick>
+      	</Scripts>
+      </CheckButton>
+      <CheckButton name="$parent_WMHide" inherits="SendMailRadioButtonTemplate">
+       <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+            	<AbsDimension  x="250" y="-130"/>
+          	</Offset>
+        	</Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+          	LuckyCharms.Flares.Config.WMRadio("hide",0);
+        	</OnClick>
+      	</Scripts>
+      </CheckButton>
+      <CheckButton name="$parent_WMAuto" inherits="SendMailRadioButtonTemplate">
+       <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+            	<AbsDimension  x="320" y="-130"/>
+          	</Offset>
+        	</Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+          	LuckyCharms.Flares.Config.WMRadio("auto",0);
+        	</OnClick>
+      	</Scripts>
+      </CheckButton>
+      <CheckButton name="$parent_WMHorizontal" inherits="SendMailRadioButtonTemplate">
+       <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="$parent_FlareOrientation" relativePoint="TOPRIGHT">
+            <Offset>
+            	<AbsDimension  x="10" y="0"/>
+          	</Offset>
+        	</Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+          	LuckyCharms.Flares.Config.WMRadioOrient("h",0);
+        	</OnClick>
+      	</Scripts>
+      </CheckButton>
+      <CheckButton name="$parent_WMVertical" inherits="SendMailRadioButtonTemplate">
+       <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="$parent_WMHorizontal" relativePoint="TOPRIGHT">
+            <Offset>
+            	<AbsDimension  x="70" y="0" />
+          	</Offset>
+        	</Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+          	LuckyCharms.Flares.Config.WMRadioOrient("v",0);
+        	</OnClick>
+      	</Scripts>
+      </CheckButton>
+      <Slider name="$parent_SliderButtonSpacing" inherits="OptionsSliderTemplate" minValue="0.0" maxValue="50.0" valueStep="1.0">
+				<Anchors>
+        	<Anchor point="TOPLEFT" relativeTo="$parent_ButtonSpacing" relativePoint="TOPRIGHT">
+          	<Offset>
+            	<AbsDimension x="10" y="0" />
+            </Offset>
+          </Anchor>
+				</Anchors>
+        <Scripts>
+        	<OnLoad>
+          	_G[self:GetName().."High"]:SetText("50.0");
+						_G[self:GetName().."Low"]:SetText("0.0");
+          </OnLoad>
+          <OnValueChanged>
+          	LuckyCharms.Flares.Config.SliderButtonSpacingChange(self:GetName());
+          </OnValueChanged>
+        </Scripts>
+      </Slider>
+    </Frames>
+		<Scripts>
+	   	<OnLoad>
+ 				LuckyCharms.Flares.Config.OnLoad(self);
+ 			</OnLoad>
+    </Scripts>
+	</Frame>
+	<!--End Flares Config-->
+</Ui>

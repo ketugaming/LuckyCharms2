@@ -1,0 +1,52 @@
+<!--
+	LuckyCharms2 r41
+	Last Changed By: neer
+	Last Changed: 2011-01-22T10:07:27Z
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="LuckyCharms2_Flares.lua"/>
+	<Button name="LC2_FlareBtnVirtual" virtual="true" inherits="SecureActionButtonTemplate">
+		<Size>
+			<AbsDimension x="20" y="20" />
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon"/>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentTitle" inherits="TextStatusBarText">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<PushedTexture file="Interface\Buttons\UI-QuickSlot-Depress"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
+	</Button>
+	
+	<Frame name="LuckyCharmsFlares_main" parent="UIParent" clampedToScreen="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="135" y="30" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-40"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				LuckyCharmsFlaresOnLoad(self);
+				self:SetMovable(true);
+			</OnLoad>
+			<OnEvent function="LuckyCharmsFlaresOnEvent" />
+		</Scripts>
+	</Frame>
+</Ui>
