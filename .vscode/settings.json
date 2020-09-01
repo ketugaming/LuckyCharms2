@@ -181,7 +181,7 @@
             "hideFromTree": true
         }
     },
-    "todo-tree.general.rootFolder": "${workspaceFolder}/src/",
+    "todo-tree.general.rootFolder": "${workspaceFolder}/",
     "todo-tree.general.tags": [
         "TODO",
         "FIXME",
@@ -196,5 +196,7 @@
         "**/node-modules/*",
         "**/.vscode/*"
     ],
+    "todo-tree.regex.regex": "((--|--\\[\\[|//|#|<!--|;|/\\*)\\s*($TAGS)|^\\s*- \\[ \\])",
+    "todo-tree.general.enableFileWatcher": true,
     "insertDateString.format": "iso"
 }

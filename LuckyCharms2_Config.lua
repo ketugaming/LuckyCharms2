@@ -1,9 +1,23 @@
 --[[
-LuckyCharms2 r41
-Last Changed By: neer
-Last Changed: 2012-10-01T18:23:27Z
-]]
-
+ File: f:\Games\World of Warcraft\_retail_\Interface\AddOns\LuckyCharms2\LuckyCharms2_Config.lua
+ 
+ File Overview: Configuration Code
+ 
+ Project: LuckyCharms2
+ 
+ Project Path: f:\Games\World of Warcraft\_retail_\Interface\AddOns\LuckyCharms2
+ 
+ Created Date: Saturday, August 29th 2020, 8:20:29 am
+ 
+ Author: Ketutastic
+ ___
+ Last Modified: Tuesday, September 1st 2020, 11:28:00 am
+ 
+ Modified By: Ketutastic
+ ___
+ Copyright (c) 2020 Ketu Gaming
+ ___
+ ]]
 --Locals
 local LC2_Realm = GetRealmName(); --Get Realm for Profile.
 local LC2_Char = UnitName("player"); --Get char name for profile.
@@ -413,7 +427,7 @@ function LuckyCharms.Config.KillOrderLoad(panel)
 end
 
 function LuckyCharms.Config.UpdateCharmStatus(charmNum, btnRef)
-	local lc = _G["LuckyCharm"..charmNum];
+	--local lc = _G["LuckyCharm"..charmNum];
 	if(LC2_Settings[LC2Profile].charmStatus[charmNum] == 1) then
 		LC2_Settings[LC2Profile].charmStatus[charmNum] = 0;
 		btnRef:SetChecked(nil);
@@ -443,7 +457,7 @@ end
 
 function LuckyCharms.Config.KONoteModeDD_Initialise(self)
 	--[[
-	--level = level or 1 --drop down menus can have sub menus. The value of "level" determines the drop down sub menu tier.
+	level = level or 1 --drop down menus can have sub menus. The value of "level" determines the drop down sub menu tier.
 	local info = UIDropDownMenu_CreateInfo();
 	info.text = "First Menu Item"; --the text of the menu item
 	info.value = 0; -- the value of the menu item. This can be a string also.
@@ -554,7 +568,7 @@ end
 --end Kill Order Configuration
 
 function LuckyCharms.Config.KOAnchor(New_kopos)
-	--LuckyCharms.Message(New_kopos);
+	-- LuckyCharms.Message(New_kopos);
 	LCKillOrder:ClearAllPoints();
 	LCKOButton:ClearAllPoints();
 	if(New_kopos == "left") then
@@ -574,16 +588,16 @@ function LuckyCharms.Config.KOAnchor(New_kopos)
 	elseif(New_kopos == "top") then
 		LCKillOrder:SetPoint("BOTTOMLEFT","LuckyCharmBar","TOPLEFT",0,-2);
 		if(LC2_Settings[LC2Profile].ancpos == "right") then
-			LCKOButton:SetPoint("TOPLEFT","LCKillOrder","TOPLEFT",14,-2);
+			LCKOButton:SetPoint("TOPLEFT","LCKillOrder","TOPLEFT",9,-2);
 		else
-			LCKOButton:SetPoint("TOPRIGHT","LCKillOrder","TOPRIGHT",-14,-2);
+			LCKOButton:SetPoint("TOPRIGHT","LCKillOrder","TOPRIGHT",-9,-2);
 		end
 	else
 		LCKillOrder:SetPoint("TOPLEFT","LuckyCharmBar","BOTTOMLEFT",0,2);
 		if(LC2_Settings[LC2Profile].ancpos == "right") then
-			LCKOButton:SetPoint("TOPLEFT","LCKillOrder","TOPLEFT",14,-2);
+			LCKOButton:SetPoint("TOPLEFT","LCKillOrder","TOPLEFT",9,-2);
 		else
-			LCKOButton:SetPoint("TOPRIGHT","LCKillOrder","TOPRIGHT",-14,-2);
+			LCKOButton:SetPoint("TOPRIGHT","LCKillOrder","TOPRIGHT",-9,-2);
 		end
 	end
 	LC2_Settings[LC2Profile].kopos = New_kopos;

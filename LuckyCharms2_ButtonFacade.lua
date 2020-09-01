@@ -1,9 +1,23 @@
 --[[
-LuckyCharms2 v7.1.0
-Last Changed By: neer
-Last Changed: 11/29/2016 12:39:26 PM
-]]
-
+ File: f:\Games\World of Warcraft\_retail_\Interface\AddOns\LuckyCharms2\LuckyCharms2_ButtonFacade.lua
+ 
+ File Overview: Support for Masque
+ 
+ Project: LuckyCharms2
+ 
+ Project Path: f:\Games\World of Warcraft\_retail_\Interface\AddOns\LuckyCharms2
+ 
+ Created Date: Saturday, August 29th 2020, 8:20:29 am
+ 
+ Author: Ketutastic
+ ___
+ Last Modified: Tuesday, September 1st 2020, 11:10:31 am
+ 
+ Modified By: Ketutastic
+ ___
+ Copyright (c) 2020 Ketu Gaming
+ ___
+ ]]
 --LuckyCharms.Message(IsAddOnLoaded("Masque"))--DEBUG
 if not IsAddOnLoaded("Masque") then return end
  

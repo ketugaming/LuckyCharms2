@@ -1,9 +1,25 @@
 <!--
-	LuckyCharms2 r41
-	Last Changed By: neer
-	Last Changed: 2011-01-22T10:07:27Z
+File: f:\Games\World of Warcraft\_retail_\Interface\AddOns\LuckyCharms2\LuckyCharms2_Config.xml
+
+File Overview: Configuration UI
+
+Project: LuckyCharms2
+
+Project Path: f:\Games\World of Warcraft\_retail_\Interface\AddOns\LuckyCharms2
+
+Created Date: Saturday, August 29th 2020, 8:20:29 am
+
+Author: Ketutastic
+___
+Last Modified: Tuesday, September 1st 2020, 11:11:14 am
+
+Modified By: Ketutastic
+___
+Copyright (c) 2020 Ketu Gaming
+___
 -->
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 	<Script file="LuckyCharms2_Config.lua"/>
 	<!--Main Config-->
@@ -11,22 +27,22 @@
 		<Layers>
 			<Layer level="ARTWORK">
 				<FontString name="$parentTitle" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOP">
-				<Offset>
-				<AbsDimension x="0" y="-10"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentSubTitle" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOP">
-				<Offset>
-				<AbsDimension x="0" y="-25"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-25"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentScale" inherits="GameFontNormal">
 					<Anchors>
@@ -38,50 +54,50 @@
 					</Anchors>
 				</FontString>
 				<FontString name="$parentAlpha" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPLEFT">
-				<Offset>
-				<AbsDimension x="5" y="-90"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-90"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplay" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPLEFT">
-				<Offset>
-				<AbsDimension x="5" y="-130"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-130"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentToolTips" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPLEFT">
-				<Offset>
-				<AbsDimension x="5" y="-180"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-180"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<!--Anchor Bar Config-->
 				<FontString name="$parentAncDisplay" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPLEFT">
-				<Offset>
-				<AbsDimension x="5" y="-220"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-220"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplayPos" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPLEFT">
-				<Offset>
-				<AbsDimension x="5" y="-260"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-260"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<!--End Anchor Bar Config-->
 				<FontString name="$parentProfile" inherits="GameFontNormal">
@@ -96,482 +112,482 @@
 			</Layer>
 		</Layers>
 		<Frames>
-     	<Slider name="$parent_Slider1" inherits="OptionsSliderTemplate" minValue="0.1" maxValue="3.0" valueStep="0.1">
+			<Slider name="$parent_Slider1" inherits="OptionsSliderTemplate" minValue="0.1" maxValue="3.0" valueStep="0.1">
 				<Anchors>
-        	<Anchor point="TOPLEFT">
-          	<Offset>
-            	<AbsDimension x="140" y="-50" />
-            </Offset>
-          </Anchor>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="140" y="-50" />
+						</Offset>
+					</Anchor>
 				</Anchors>
-        <Scripts>
-        	<OnLoad>
+				<Scripts>
+					<OnLoad>
           	_G[self:GetName().."High"]:SetText("3.0");
 						_G[self:GetName().."Low"]:SetText("0.1");
-          </OnLoad>
-          <OnValueChanged>
+					</OnLoad>
+					<OnValueChanged>
           	LuckyCharms.Config.SliderChange(self:GetName());
-          </OnValueChanged>
-        </Scripts>
-      </Slider>
-      <Slider name="$parent_SliderAlpha" inherits="OptionsSliderTemplate" minValue="0.0" maxValue="1.0" valueStep="0.1">
+					</OnValueChanged>
+				</Scripts>
+			</Slider>
+			<Slider name="$parent_SliderAlpha" inherits="OptionsSliderTemplate" minValue="0.0" maxValue="1.0" valueStep="0.1">
 				<Anchors>
-        	<Anchor point="TOPLEFT">
-          	<Offset>
-            	<AbsDimension x="140" y="-90" />
-            </Offset>
-          </Anchor>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="140" y="-90" />
+						</Offset>
+					</Anchor>
 				</Anchors>
-        <Scripts>
-        	<OnLoad>
+				<Scripts>
+					<OnLoad>
           	_G[self:GetName().."High"]:SetText("1.0");
 						_G[self:GetName().."Low"]:SetText("0.0");
-          </OnLoad>
-          <OnValueChanged>
+					</OnLoad>
+					<OnValueChanged>
           	LuckyCharms.Config.SliderAlphaChange(self:GetName());
-          </OnValueChanged>
-        </Scripts>
-      </Slider>
-      <CheckButton name="$parent_RadioShow" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="140" y="-130"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnValueChanged>
+				</Scripts>
+			</Slider>
+			<CheckButton name="$parent_RadioShow" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="140" y="-130"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.Radio("show",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_RadioHide" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="220" y="-130"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_RadioHide" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="220" y="-130"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.Radio("hide",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_RadioAuto" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="300" y="-130"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_RadioAuto" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="300" y="-130"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.Radio("auto",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_RadioTTEnable" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="150" y="-180"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_RadioTTEnable" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="150" y="-180"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.TTRadio(1,0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_RadioTTDisable" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="220" y="-180"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_RadioTTDisable" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="220" y="-180"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.TTRadio(0,0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <!--Anchor Bar Config-->
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<!--Anchor Bar Config-->
 			<CheckButton name="$parent_AncRadioShow" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="140" y="-220"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="140" y="-220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.AncRadio("show",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_AncRadioHide" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="220" y="-220"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_AncRadioHide" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="220" y="-220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.AncRadio("hide",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-       <CheckButton name="$parent_AncRadioAuto" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="300" y="-220"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_AncRadioAuto" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="300" y="-220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.AncRadio("auto",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_AncRadioLeft" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="140" y="-260"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_AncRadioLeft" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="140" y="-260"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.AncRadioPos("left",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_AncRadioRight" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="220" y="-260"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_AncRadioRight" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="220" y="-260"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.AncRadioPos("right",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_AncRadioTop" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="140" y="-275"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_AncRadioTop" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="140" y="-275"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.AncRadioPos("top",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_AncRadioBottom" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="220" y="-275"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_AncRadioBottom" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="220" y="-275"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.AncRadioPos("bottom",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <!--End Anchor Bar Config-->
-    </Frames>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<!--End Anchor Bar Config-->
+		</Frames>
 		<Scripts>
-	   	<OnLoad>
+			<OnLoad>
  				LuckyCharms.Config.OnLoad(self);
- 			</OnLoad>
-    </Scripts>
+			</OnLoad>
+		</Scripts>
 	</Frame>
 	<!--End Main Config-->
-	
+
 	<!--Ready Check Button Config-->
 	<Frame name="LuckyCharmConfigRC">
 		<Layers>
 			<Layer level="ARTWORK">
 				<FontString name="$parentTitle" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOP">
-				<Offset>
-				<AbsDimension x="0" y="-10"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentSubTitle" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOP">
-				<Offset>
-				<AbsDimension x="0" y="-25"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-25"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplay" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPLEFT">
-				<Offset>
-				<AbsDimension x="5" y="-50"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplayDefault" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPRIGHT">
-				<Offset>
-				<AbsDimension x="-5" y="-50"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplayPos" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPLEFT">
-				<Offset>
-				<AbsDimension x="5" y="-80"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-80"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplayPosDefault" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPRIGHT">
-				<Offset>
-				<AbsDimension x="-5" y="-80"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="-80"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 			</Layer>
 		</Layers>
 		<Frames>
 			<CheckButton name="$parent_RCRadioShow" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="20" y="-65"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-65"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.RCRadio("show",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_RCRadioHide" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="100" y="-65"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_RCRadioHide" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="100" y="-65"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.RCRadio("hide",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_RCRadioAuto" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="180" y="-65"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_RCRadioAuto" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="180" y="-65"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.RCRadio("auto",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_RCRadioLeft" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="20" y="-95"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_RCRadioLeft" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-95"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.RCRadioPos("left",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_RCRadioRight" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="100" y="-95"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_RCRadioRight" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="100" y="-95"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.RCRadioPos("right",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_RCRadioTop" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="180" y="-95"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_RCRadioTop" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="180" y="-95"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.RCRadioPos("top",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_RCRadioBottom" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="270" y="-95"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_RCRadioBottom" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="270" y="-95"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.RCRadioPos("bottom",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-    </Frames>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+		</Frames>
 		<Scripts>
-	   	<OnLoad>
+			<OnLoad>
  				LuckyCharms.Config.RCOnLoad(self);
- 			</OnLoad>
-    </Scripts>
+			</OnLoad>
+		</Scripts>
 	</Frame>
 	<!--End Ready Check Button Config-->
-	
+
 	<!--Kill Order Config-->
 	<Frame name="LuckyCharmConfigKO">
 		<Layers>
 			<Layer level="ARTWORK">
 				<FontString name="$parentTitle" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOP">
-				<Offset>
-				<AbsDimension x="0" y="-10"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentSubTitle" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOP">
-				<Offset>
-				<AbsDimension x="0" y="-25"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-25"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplay" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPLEFT">
-				<Offset>
-				<AbsDimension x="5" y="-50"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplayDefault" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPRIGHT">
-				<Offset>
-				<AbsDimension x="-5" y="-50"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplayPos" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPLEFT">
-				<Offset>
-				<AbsDimension x="5" y="-80"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-80"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplayPosDefault" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPRIGHT">
-				<Offset>
-				<AbsDimension x="-5" y="-80"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="-80"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplay" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPLEFT">
-				<Offset>
-				<AbsDimension x="5" y="-50"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplayDefault" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPRIGHT">
-				<Offset>
-				<AbsDimension x="-5" y="-50"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplayPos" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPLEFT">
-				<Offset>
-				<AbsDimension x="5" y="-80"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-80"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentDisplayPosDefault" inherits="GameFontNormal">
-				<Anchors>
-				<Anchor point="TOPRIGHT">
-				<Offset>
-				<AbsDimension x="-5" y="-80"/>
-				</Offset>
-				</Anchor>
-				</Anchors>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="-80"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
 				</FontString>
 				<FontString name="$parentKOPRChat" inherits="GameFontNormal">
 					<Anchors>
@@ -622,171 +638,171 @@
 		</Layers>
 		<Frames>
 			<CheckButton name="$parent_KORadioShow" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="20" y="-65"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-65"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.KORadio("show",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_KORadioHide" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="100" y="-65"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_KORadioHide" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="100" y="-65"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.KORadio("hide",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_KORadioAuto" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="180" y="-65"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_KORadioAuto" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="180" y="-65"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.KORadio("auto",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_KORadioLeft" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="20" y="-95"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_KORadioLeft" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-95"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.KORadioPos("left",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_KORadioRight" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="100" y="-95"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_KORadioRight" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="100" y="-95"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.KORadioPos("right",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_KORadioTop" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="20" y="-95"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_KORadioTop" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-95"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.KORadioPos("top",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_KORadioBottom" inherits="SendMailRadioButtonTemplate">
-       <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-            	<AbsDimension  x="100" y="-95"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_KORadioBottom" inherits="SendMailRadioButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="100" y="-95"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.KORadioPos("bottom",0);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_KOcbPR" inherits="OptionsCheckButtonTemplate">
-       <Anchors>
-          <Anchor point="LEFT" relativeTo="$parentKOPRChat" relativePoint="RIGHT">
-            <Offset>
-            	<AbsDimension  x="0" y="-4"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_KOcbPR" inherits="OptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentKOPRChat" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.KOPRChatToggle();
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_KOcbRW" inherits="OptionsCheckButtonTemplate">
-       <Anchors>
-          <Anchor point="LEFT" relativeTo="$parentRaidWarning" relativePoint="RIGHT">
-            <Offset>
-            	<AbsDimension  x="0" y="-4"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_KOcbRW" inherits="OptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentRaidWarning" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.KORWToggle();
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_KOCCRW" inherits="OptionsCheckButtonTemplate">
-       <Anchors>
-          <Anchor point="LEFT" relativeTo="$parentCCDisplay" relativePoint="RIGHT">
-            <Offset>
-            	<AbsDimension  x="0" y="-4"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_KOCCRW" inherits="OptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentCCDisplay" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.KOCCToggle();
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <CheckButton name="$parent_KOPrintCheck" inherits="OptionsCheckButtonTemplate">
-       <Anchors>
-          <Anchor point="LEFT" relativeTo="$parentKOPrint" relativePoint="RIGHT">
-            <Offset>
-            	<AbsDimension  x="0" y="-4"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Scripts>
-          <OnClick>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_KOPrintCheck" inherits="OptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentKOPrint" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.KOPrintToggle();
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-      <Button name="$parent_LC1">
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parent_LC1">
 				<Size>
 					<AbsDimension x="36" y="38"/>
 				</Size>
 				<Anchors>
-          <Anchor point="LEFT" relativeTo="$parentRaidWarning" relativePoint="LEFT">
-            <Offset>
-            	<AbsDimension  x="30" y="-70"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Layers>
+					<Anchor point="LEFT" relativeTo="$parentRaidWarning" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="30" y="-70"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
 					<Layer level="ARTWORK">
 						<FontString name="$parentTxtDis" inherits="GameFontNormal">
 							<Anchors>
@@ -807,31 +823,31 @@
 				<Size>
 					<AbsDimension x="28" y="28"/>
 				</Size>
-	      <Anchors>
-	        <Anchor point="LEFT" relativeTo="$parent_LC1TxtDis" relativePoint="RIGHT">
-	          <Offset>
-	          	<AbsDimension  x="0" y="-2"/>
-	        	</Offset>
-	      	</Anchor>
-	      </Anchors>
-        <Scripts>
-          <OnClick>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_LC1TxtDis" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.UpdateCharmStatus(1, self);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
 			<Button name="$parent_LC2">
 				<Size>
 					<AbsDimension x="36" y="38"/>
 				</Size>
 				<Anchors>
-          <Anchor point="LEFT" relativeTo="$parent_LC1" relativePoint="RIGHT">
-            <Offset>
-            	<AbsDimension  x="65" y="0"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Layers>
+					<Anchor point="LEFT" relativeTo="$parent_LC1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="65" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
 					<Layer level="ARTWORK">
 						<FontString name="$parentTxtDis" inherits="GameFontNormal">
 							<Anchors>
@@ -849,34 +865,34 @@
 				</NormalTexture>
 			</Button>
 			<CheckButton name="$parent_LC2CBDis" inherits="UICheckButtonTemplate">
-       	<Size>
+				<Size>
 					<AbsDimension x="28" y="28"/>
 				</Size>
-	      <Anchors>
-	        <Anchor point="LEFT" relativeTo="$parent_LC2TxtDis" relativePoint="RIGHT">
-	          <Offset>
-	          	<AbsDimension  x="0" y="-2"/>
-	        	</Offset>
-	      	</Anchor>
-	      </Anchors>
-        <Scripts>
-          <OnClick>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_LC2TxtDis" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.UpdateCharmStatus(2, self);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
 			<Button name="$parent_LC3">
 				<Size>
 					<AbsDimension x="36" y="38"/>
 				</Size>
 				<Anchors>
-          <Anchor point="LEFT" relativeTo="$parent_LC2" relativePoint="RIGHT">
-            <Offset>
-            	<AbsDimension  x="65" y="0"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Layers>
+					<Anchor point="LEFT" relativeTo="$parent_LC2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="65" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
 					<Layer level="ARTWORK">
 						<FontString name="$parentTxtDis" inherits="GameFontNormal">
 							<Anchors>
@@ -894,34 +910,34 @@
 				</NormalTexture>
 			</Button>
 			<CheckButton name="$parent_LC3CBDis" inherits="UICheckButtonTemplate">
-       	<Size>
+				<Size>
 					<AbsDimension x="28" y="28"/>
 				</Size>
-	      <Anchors>
-	        <Anchor point="LEFT" relativeTo="$parent_LC3TxtDis" relativePoint="RIGHT">
-	          <Offset>
-	          	<AbsDimension  x="0" y="-2"/>
-	        	</Offset>
-	      	</Anchor>
-	      </Anchors>
-        <Scripts>
-          <OnClick>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_LC3TxtDis" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.UpdateCharmStatus(3, self);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
 			<Button name="$parent_LC4">
 				<Size>
 					<AbsDimension x="36" y="38"/>
 				</Size>
 				<Anchors>
-          <Anchor point="LEFT" relativeTo="$parent_LC3" relativePoint="RIGHT">
-            <Offset>
-            	<AbsDimension  x="65" y="0"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Layers>
+					<Anchor point="LEFT" relativeTo="$parent_LC3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="65" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
 					<Layer level="ARTWORK">
 						<FontString name="$parentTxtDis" inherits="GameFontNormal">
 							<Anchors>
@@ -939,34 +955,34 @@
 				</NormalTexture>
 			</Button>
 			<CheckButton name="$parent_LC4CBDis" inherits="UICheckButtonTemplate">
-       	<Size>
+				<Size>
 					<AbsDimension x="28" y="28"/>
 				</Size>
-	      <Anchors>
-	        <Anchor point="LEFT" relativeTo="$parent_LC4TxtDis" relativePoint="RIGHT">
-	          <Offset>
-	          	<AbsDimension  x="0" y="-2"/>
-	        	</Offset>
-	      	</Anchor>
-	      </Anchors>
-        <Scripts>
-          <OnClick>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_LC4TxtDis" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.UpdateCharmStatus(4, self);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
 			<Button name="$parent_LC5">
 				<Size>
 					<AbsDimension x="36" y="38"/>
 				</Size>
 				<Anchors>
-          <Anchor point="TOP" relativeTo="$parent_LC1" relativePoint="BOTTOM">
-            <Offset>
-            	<AbsDimension  x="0" y="-60"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Layers>
+					<Anchor point="TOP" relativeTo="$parent_LC1" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
 					<Layer level="ARTWORK">
 						<FontString name="$parentTxtDis" inherits="GameFontNormal">
 							<Anchors>
@@ -984,34 +1000,34 @@
 				</NormalTexture>
 			</Button>
 			<CheckButton name="$parent_LC5CBDis" inherits="UICheckButtonTemplate">
-       	<Size>
+				<Size>
 					<AbsDimension x="28" y="28"/>
 				</Size>
-	      <Anchors>
-	        <Anchor point="LEFT" relativeTo="$parent_LC5TxtDis" relativePoint="RIGHT">
-	          <Offset>
-	          	<AbsDimension  x="0" y="-2"/>
-	        	</Offset>
-	      	</Anchor>
-	      </Anchors>
-        <Scripts>
-          <OnClick>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_LC5TxtDis" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.UpdateCharmStatus(5, self);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
 			<Button name="$parent_LC6">
 				<Size>
 					<AbsDimension x="36" y="38"/>
 				</Size>
 				<Anchors>
-          <Anchor point="LEFT" relativeTo="$parent_LC5" relativePoint="RIGHT">
-            <Offset>
-            	<AbsDimension  x="65" y="0"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Layers>
+					<Anchor point="LEFT" relativeTo="$parent_LC5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="65" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
 					<Layer level="ARTWORK">
 						<FontString name="$parentTxtDis" inherits="GameFontNormal">
 							<Anchors>
@@ -1029,34 +1045,34 @@
 				</NormalTexture>
 			</Button>
 			<CheckButton name="$parent_LC6CBDis" inherits="UICheckButtonTemplate">
-       	<Size>
+				<Size>
 					<AbsDimension x="28" y="28"/>
 				</Size>
-	      <Anchors>
-	        <Anchor point="LEFT" relativeTo="$parent_LC6TxtDis" relativePoint="RIGHT">
-	          <Offset>
-	          	<AbsDimension  x="0" y="-2"/>
-	        	</Offset>
-	      	</Anchor>
-	      </Anchors>
-        <Scripts>
-          <OnClick>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_LC6TxtDis" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.UpdateCharmStatus(6, self);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
 			<Button name="$parent_LC7">
 				<Size>
 					<AbsDimension x="36" y="38"/>
 				</Size>
 				<Anchors>
-          <Anchor point="LEFT" relativeTo="$parent_LC6" relativePoint="RIGHT">
-            <Offset>
-            	<AbsDimension  x="65" y="0"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Layers>
+					<Anchor point="LEFT" relativeTo="$parent_LC6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="65" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
 					<Layer level="ARTWORK">
 						<FontString name="$parentTxtDis" inherits="GameFontNormal">
 							<Anchors>
@@ -1074,34 +1090,34 @@
 				</NormalTexture>
 			</Button>
 			<CheckButton name="$parent_LC7CBDis" inherits="UICheckButtonTemplate">
-       	<Size>
+				<Size>
 					<AbsDimension x="28" y="28"/>
 				</Size>
-	      <Anchors>
-	        <Anchor point="LEFT" relativeTo="$parent_LC7TxtDis" relativePoint="RIGHT">
-	          <Offset>
-	          	<AbsDimension  x="0" y="-2"/>
-	        	</Offset>
-	      	</Anchor>
-	      </Anchors>
-        <Scripts>
-          <OnClick>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_LC7TxtDis" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.UpdateCharmStatus(7, self);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
 			<Button name="$parent_LC8">
 				<Size>
 					<AbsDimension x="36" y="38"/>
 				</Size>
 				<Anchors>
-          <Anchor point="LEFT" relativeTo="$parent_LC7" relativePoint="RIGHT">
-            <Offset>
-            	<AbsDimension  x="65" y="0"/>
-          	</Offset>
-        	</Anchor>
-        </Anchors>
-        <Layers>
+					<Anchor point="LEFT" relativeTo="$parent_LC7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="65" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
 					<Layer level="ARTWORK">
 						<FontString name="$parentTxtDis" inherits="GameFontNormal">
 							<Anchors>
@@ -1119,28 +1135,28 @@
 				</NormalTexture>
 			</Button>
 			<CheckButton name="$parent_LC8CBDis" inherits="UICheckButtonTemplate">
-       	<Size>
+				<Size>
 					<AbsDimension x="28" y="28"/>
 				</Size>
-	      <Anchors>
-	        <Anchor point="LEFT" relativeTo="$parent_LC8TxtDis" relativePoint="RIGHT">
-	          <Offset>
-	          	<AbsDimension  x="0" y="-2"/>
-	        	</Offset>
-	      	</Anchor>
-	      </Anchors>
-        <Scripts>
-          <OnClick>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_LC8TxtDis" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
           	LuckyCharms.Config.UpdateCharmStatus(8, self);
-        	</OnClick>
-      	</Scripts>
-      </CheckButton>
-    </Frames>
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+		</Frames>
 		<Scripts>
-	   	<OnLoad>
+			<OnLoad>
  				LuckyCharms.Config.KillOrderLoad(self);
- 			</OnLoad>
-    </Scripts>
+			</OnLoad>
+		</Scripts>
 	</Frame>
 	<!--End Kill Order Config-->
 </Ui>

@@ -11,7 +11,7 @@
  
  Author: Ketutastic
  ___
- Last Modified: Tuesday, September 1st 2020, 8:10:10 am
+ Last Modified: Tuesday, September 1st 2020, 8:49:29 am
  
  Modified By: Ketutastic
  ___
@@ -39,7 +39,7 @@ function Localize()
 	end
 
 	--Version
-	LC2Version = "v7.2.0.04112017";
+	LC2Version = "v8.0.3.09012020";
 	LC2SettVer = "1.2";
 
 	--Crowd Control Spells

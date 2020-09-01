@@ -1,8 +1,23 @@
 --[[
-LuckyCharms2
-Last Changed By: neer
-Last Changed: 2/16/2017 12:17:45 PM
-]]
+ File: f:\Games\World of Warcraft\_retail_\Interface\AddOns\LuckyCharms2\LuckyCharms2_Flares.lua
+ 
+ File Overview: Falres Code
+ 
+ Project: LuckyCharms2
+ 
+ Project Path: f:\Games\World of Warcraft\_retail_\Interface\AddOns\LuckyCharms2
+ 
+ Created Date: Saturday, August 29th 2020, 8:20:29 am
+ 
+ Author: Ketutastic
+ ___
+ Last Modified: Tuesday, September 1st 2020, 11:28:41 am
+ 
+ Modified By: Ketutastic
+ ___
+ Copyright (c) 2020 Ketu Gaming
+ ___
+ ]]
 
 --Globals
 local LC2_Realm = GetRealmName(); --Get Realm for Profile.
@@ -111,7 +126,8 @@ end
 
 function LuckyCharms.Flares.SetButtonPoints(orient)
 	if(orient == "h")then
-			LuckyCharmsFlares_main:SetWidth(195 + (LC2_Settings[LC2Profile].FlareBarSpacing*5));
+		--Horizontal Orientation
+			LuckyCharmsFlares_main:SetWidth(195 + (LC2_Settings[LC2Profile].FlareBarSpacing*8));
 			LuckyCharmsFlares_main:SetHeight(30);
 			for i=1,9 do
 				local b = _G["LuckyCharm2Flare"..i];
@@ -125,8 +141,9 @@ function LuckyCharms.Flares.SetButtonPoints(orient)
 				end
 			end
 		else
+			--Vertical Orientation
 			LuckyCharmsFlares_main:SetWidth(30);
-			LuckyCharmsFlares_main:SetHeight(135 + (LC2_Settings[LC2Profile].FlareBarSpacing*5));
+			LuckyCharmsFlares_main:SetHeight(195 + (LC2_Settings[LC2Profile].FlareBarSpacing*8));
 			for i=1,9 do
 				local b = _G["LuckyCharm2Flare"..i];
 				if(b) then
@@ -158,7 +175,7 @@ function LuckyCharms.Flares.SetTexCoords()
 			elseif(i==6)then
 				f:SetTexCoord(unpack(BLIP_TEX_COORDS["DRUID"]));--Orange Flare
 			elseif(i==7)then
-				f:SetTexCoord(unpack(BLIP_TEX_COORDS["MAGE"]));--Silver Flare?
+				f:SetTexCoord(unpack(BLIP_TEX_COORDS["MAGE"]));--Silver Flare
 			elseif(i==8)then
 				f:SetTexCoord(unpack(BLIP_TEX_COORDS["PRIEST"])); --White Flare
 			end
