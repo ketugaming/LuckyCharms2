@@ -19,7 +19,7 @@
 # ___                                                                                   #
 #########################################################################################
 
-package-as: LuckyCharms2-Classic
 ignore: # Files and directories beginning with a dot (such as .git) are automatically ignored, as is the pgkmeta file itself.
     - changelog.txt
+
 manual-changelog: changelog-classic.md
