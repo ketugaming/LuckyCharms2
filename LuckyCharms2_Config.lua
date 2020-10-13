@@ -9,11 +9,11 @@
  
  Created Date: Saturday, August 29th 2020, 8:20:29 am
  
- Author: Ketutastic
+ Author: KetuSolo
  ___
- Last Modified: Tuesday, September 1st 2020, 11:28:00 am
+ Last Modified: Monday, October 12th 2020, 8:37:13 pm
  
- Modified By: Ketutastic
+ Modified By: KetuSolo
  ___
  Copyright (c) 2020 Ketu Gaming
  ___
@@ -23,7 +23,7 @@ local LC2_Realm = GetRealmName(); --Get Realm for Profile.
 local LC2_Char = UnitName("player"); --Get char name for profile.
 local LC2Profile = LC2_Realm.." - "..LC2_Char;
 
-LuckyCharms.Config = {};
+-- LuckyCharms.Config = {};
 
 function LuckyCharms.Config.AncRadio(status,startup)
 	if(status == "show") then
@@ -297,10 +297,30 @@ end
 --end Radio Check Configuration
 
 function LuckyCharms.Config.InitSlider(slider)
+	slider:SetBackdrop(
+		{
+			bgFile = "Interface\\Buttons\\UI-SliderBar-Background",
+			edgeFile = "Interface\\Buttons\\UI-SliderBar-Border",
+			tile = true,
+			tileEdge = true,
+			tileSize = 8,
+			edgeSize = 8,
+			insets = { left = 3, right = 3, top = 6, bottom = 6 },
+		});
 	slider:SetValue(LC2_Settings[LC2Profile].barscale);
 end
 
 function LuckyCharms.Config.InitAlphaSlider(slider)
+	slider:SetBackdrop(
+		{
+			bgFile = "Interface\\Buttons\\UI-SliderBar-Background",
+			edgeFile = "Interface\\Buttons\\UI-SliderBar-Border",
+			tile = true,
+			tileEdge = true,
+			tileSize = 8,
+			edgeSize = 8,
+			insets = { left = 3, right = 3, top = 6, bottom = 6 },
+		});
 	slider:SetValue(LC2_Settings[LC2Profile].alpha);
 end
 
@@ -602,7 +622,11 @@ function LuckyCharms.Config.KOAnchor(New_kopos)
 	end
 	LC2_Settings[LC2Profile].kopos = New_kopos;
 	LuckyCharms.Config.KORadioPos(New_kopos,1);
-	LuckyCharms.KOCTextPos(New_kopos);
+	-- DEFAULT_CHAT_FRAME:AddMessage("|cffffd200LC2:|r " .. tostring(LuckyCharms.KOCTextPos));
+	-- DEFAULT_CHAT_FRAME:AddMessage("|cffffd200LC2:|r " .. tostring(LuckyCharms));
+	if(LuckyCharms.KOCTextPos)then
+		LuckyCharms.KOCTextPos(New_kopos);
+	end
 end
 
 --Initialize Profile Drop Down Menu

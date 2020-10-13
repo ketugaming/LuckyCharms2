@@ -22,7 +22,7 @@ If selected, pressing the KO button will print the kill order as well as cc assi
 Ability to use the World Markers without opening the built-in raid managment frame. This is a seperate bar from the charm bar and can be positioned anywhere on your screen.  Also has the ability to be hidden/shown or auto show/hide by choosing the appropriate setting in the configuration.
 
 Translations:
-English: Ketutastic
+English: KetuSolo
 German: Wauzi0816
 
 More translations needed!!!

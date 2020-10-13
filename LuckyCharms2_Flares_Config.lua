@@ -1,15 +1,15 @@
 --[[
 LuckyCharms2 r41
-Last Changed By: neer
+Last Changed By: KetuSolo
 Last Changed: 2012-10-01T18:23:27Z
 ]]
 
 --Locals
-local LC2_Realm = GetRealmName(); --Get Realm for Profile.
-local LC2_Char = UnitName("player"); --Get char name for profile.
-local LC2Profile = LC2_Realm.." - "..LC2_Char;
+-- local LC2_Realm = GetRealmName(); --Get Realm for Profile.
+-- local LC2_Char = UnitName("player"); --Get char name for profile.
+-- local LC2Profile = LC2_Realm.." - "..LC2_Char;
 
-LuckyCharms.Flares.Config = {};
+-- LuckyCharms.Flares.Config = {};
 
 function LuckyCharms.Flares.Config.OnLoad(panel)
 	panel.name = LC2TXT_WMBAR.." "..LC2TXT_CONF;
@@ -80,10 +80,30 @@ function LuckyCharms.Flares.Config.WMRadioOrient(status,startup)
 end
 
 function LuckyCharms.Flares.Config.InitScaleSlider(slider)
+	slider:SetBackdrop(
+		{
+			bgFile = "Interface\\Buttons\\UI-SliderBar-Background",
+			edgeFile = "Interface\\Buttons\\UI-SliderBar-Border",
+			tile = true,
+			tileEdge = true,
+			tileSize = 8,
+			edgeSize = 8,
+			insets = { left = 3, right = 3, top = 6, bottom = 6 },
+		});
 	slider:SetValue(LC2_Settings[LC2Profile].FlareBarScale);
 end
 
 function LuckyCharms.Flares.Config.InitAlphaSlider(slider)
+	slider:SetBackdrop(
+		{
+			bgFile = "Interface\\Buttons\\UI-SliderBar-Background",
+			edgeFile = "Interface\\Buttons\\UI-SliderBar-Border",
+			tile = true,
+			tileEdge = true,
+			tileSize = 8,
+			edgeSize = 8,
+			insets = { left = 3, right = 3, top = 6, bottom = 6 },
+		});
 	slider:SetValue(LC2_Settings[LC2Profile].FlareBarAlpha);
 end
 
@@ -115,6 +135,16 @@ end
 
 --Button spacing slider
 function LuckyCharms.Flares.Config.InitSliderButtonSpacing(slider)
+	slider:SetBackdrop(
+		{
+			bgFile = "Interface\\Buttons\\UI-SliderBar-Background",
+			edgeFile = "Interface\\Buttons\\UI-SliderBar-Border",
+			tile = true,
+			tileEdge = true,
+			tileSize = 8,
+			edgeSize = 8,
+			insets = { left = 3, right = 3, top = 6, bottom = 6 },
+		});
 	slider:SetValue(LC2_Settings[LC2Profile].FlareBarSpacing);
 end
 

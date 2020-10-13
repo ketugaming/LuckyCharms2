@@ -9,11 +9,11 @@ Project Path: f:\Games\World of Warcraft\_retail_\Interface\AddOns\LuckyCharms2
 
 Created Date: Saturday, August 29th 2020, 8:20:29 am
 
-Author: Ketutastic
+Author: KetuSolo
 ___
-Last Modified: Tuesday, September 1st 2020, 11:18:44 am
+Last Modified: Monday, October 12th 2020, 7:37:55 pm
 
-Modified By: Ketutastic
+Modified By: KetuSolo
 ___
 Copyright (c) 2020 Ketu Gaming
 ___
@@ -21,15 +21,17 @@ ___
 <Ui xmlns="http://www.blizzard.com/wow/ui/"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
+	<Script file="vars.lua"/>
 	<Script file="libs\LibStub\LibStub.lua"/>
 	<Script file="localization.en.lua"/>
 	<Script file="localization.de.lua"/>
 	<Script file="localization.lua"/>
+	<Script file="LuckyCharms2_Config.lua"/>
+	<Script file="LuckyCharms2_Flares_Config.lua"/>
 	<Script file="LuckyCharms2.lua"/>
 	<Script file="LuckyCharms2_Flares.lua"/>
 	<Script file="LuckyCharms2_ButtonFacade.lua"/>
-	<Script file="LuckyCharms2_Config.lua"/>
-	<Script file="LuckyCharms2_Flares_Config.lua"/>
+
 	<Script>
 		Localize();
 	</Script>
@@ -84,13 +86,11 @@ ___
 			</Anchor>
 		</Anchors>
 		<Scripts>
-			<OnLoad>
-				LuckyCharmsOnLoad(self);
-			</OnLoad>
-			<OnEvent function="LuckyCharmsOnEvent" />
+			<OnLoad function="LuckyCharms_OnLoad" />
+			<OnEvent function="LuckyCharms_OnEvent" />
 		</Scripts>
 		<Frames>
-			<Frame name="LuckyCharmAnchorBar" enableMouse="true">
+			<Frame name="LuckyCharmAnchorBar" enableMouse="true" inherits="BackdropTemplate">
 				<Size>
 					<AbsDimension x="30" y="47" />
 				</Size>
@@ -161,7 +161,7 @@ ___
 			</Anchor>
 		</Anchors>
 		<Frames>
-			<Frame name="LuckyCharmBar" enableMouse="true">
+			<Frame name="LuckyCharmBar" enableMouse="true" inherits="BackdropTemplate">
 				<Anchors>
 					<Anchor point="LEFT" relativeTo="LuckyCharmAnchorBar">
 						<Offset>
