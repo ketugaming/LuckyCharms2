@@ -2,7 +2,7 @@
 	deDE Localization
 	LuckyCharms2
 	Translators: Wauzi0816
-	Last Changed By: neer
+	Last Changed By: KetuSolo
 	Last Changed: 1/6/2017 9:52:06 AM
 ]]
 function LC2LocalizeDE()

@@ -9,20 +9,20 @@
  
  Created Date: Saturday, August 29th 2020, 8:20:29 am
  
- Author: Ketutastic
+ Author: KetuSolo
  ___
- Last Modified: Tuesday, September 1st 2020, 11:28:41 am
+ Last Modified: Monday, October 12th 2020, 8:14:57 pm
  
- Modified By: Ketutastic
+ Modified By: KetuSolo
  ___
  Copyright (c) 2020 Ketu Gaming
  ___
  ]]
 
 --Globals
-local LC2_Realm = GetRealmName(); --Get Realm for Profile.
-local LC2_Char = UnitName("player"); --Get char name for profile.
-local LC2Profile = LC2_Realm.." - "..LC2_Char;
+-- local LC2_Realm = GetRealmName(); --Get Realm for Profile.
+-- local LC2_Char = UnitName("player"); --Get char name for profile.
+-- local LC2Profile = LC2_Realm.." - "..LC2_Char;
 local LBF = LibStub("Masque",true);
 
 local BLIP_TEX_COORDS = {
@@ -34,7 +34,7 @@ local BLIP_TEX_COORDS = {
   ["MONK"]={0.125,0.25,0.25,0.5}
 }
 
-LuckyCharms.Flares = {};
+-- LuckyCharms.Flares = {};
 
 function LuckyCharmsFlaresOnLoad(self)
 	self:RegisterEvent('ADDON_LOADED');
@@ -110,12 +110,15 @@ function LuckyCharms.Flares.AddButtons()
 				--Clear Flares
 				b = CreateFrame("Button","LuckyCharm2Flare"..i,LuckyCharmsFlares_main,"LC2_FlareBtnVirtual");
 				b:SetAttribute("type", "macro")
-				b:SetAttribute("macrotext1", "/click CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton\n/click DropDownList1Button9")
+				-- b:SetAttribute("macrotext1", "/click CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton\n/click DropDownList1Button9")
+				b:SetAttribute("macrotext1","/clearworldmarker all");
 				b:SetScript("OnEnter", function(self) if (LC2_Settings[LC2Profile].tooltips == 1) then GameTooltip:SetOwner(self, "ANCHOR_CURSOR"); GameTooltip:ClearLines(); GameTooltip:AddLine(LC2FTT_LEFTCLICK.." "..REMOVE_WORLD_MARKERS,0.88,0.65,0); GameTooltip:AddLine(LC2FTT_RIGHTCLICK,0.88,0.65,0);GameTooltip:Show() end end)
 				b:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
 				b:SetScript("OnMouseDown", function(self,button) if (button=="RightButton") then LuckyCharmsFlares_main:StartMoving() end end)
 				b:SetScript("OnMouseUp", function(self) LuckyCharmsFlares_main:StopMovingOrSizing() end)
 	
+				b:SetAttribute("disabled","true");
+
 				local t = _G["LuckyCharm2Flare"..i.."Icon"];
 				t:SetTexture("Interface\\BUTTONS\\UI-GroupLoot-Pass-Up");
 			end
@@ -123,6 +126,17 @@ function LuckyCharms.Flares.AddButtons()
 	end
 	LuckyCharms.Flares.SetButtonPoints(LC2_Settings[LC2Profile].FlareBarOrient);
 end
+
+-- function LuckyCharms.Flares.UpdateClearButton(isRaid)
+-- 	local b = _G["LuckyCharm2Flare9"];
+-- 	if(b)then
+-- 		if(isRaid)then
+-- 			_G["LuckyCharm2Flare9"]:SetAttribute("disabled","false");
+-- 		else
+-- 			_G["LuckyCharm2Flare9"]:SetAttribute("disabled","true");
+-- 		end
+-- 	end
+-- end
 
 function LuckyCharms.Flares.SetButtonPoints(orient)
 	if(orient == "h")then

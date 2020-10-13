@@ -11,50 +11,20 @@
  
  Author: Ketutastic
  ___
- Last Modified: Tuesday, September 1st 2020, 11:19:50 am
+ Last Modified: Monday, October 12th 2020, 8:30:07 pm
  
- Modified By: Ketutastic
+ Modified By: KetuSolo
  ___
  Copyright (c) 2020 Ketu Gaming
  ___
- ]] -- Locals
-local LC2_Realm = GetRealmName(); -- Get Realm for Profile.
-local LC2_Char = UnitName("player"); -- Get char name for profile.
-local LC2Profile = LC2_Realm .. " - " .. LC2_Char;
+ ]] 
+ -- Locals
+-- local LC2_Realm = GetRealmName(); -- Get Realm for Profile.
+-- local LC2_Char = UnitName("player"); -- Get char name for profile.
+-- local LC2Profile = LC2_Realm .. " - " .. LC2_Char;
 local LBF = LibStub("Masque", true);
+--DEFAULT_CHAT_FRAME:AddMessage("LC2 Using Profile: " .. LC2Profile);
 -- local LC2IsLoaded = false;
-
--- Set Defaults
-PrevSettVer = "";
-charmArr = {}; -- Charm Array
-charmArr[1] = {};
-charmArr[1][0] = RAID_TARGET_1; -- Star
-charmArr[1][1] = "{" .. ICON_TAG_RAID_TARGET_STAR1 .. "}";
-charmArr[2] = {};
-charmArr[2][0] = RAID_TARGET_2; -- Circle
-charmArr[2][1] = "{" .. ICON_TAG_RAID_TARGET_CIRCLE1 .. "}";
-charmArr[3] = {};
-charmArr[3][0] = RAID_TARGET_3; -- Diamond
-charmArr[3][1] = "{" .. ICON_TAG_RAID_TARGET_DIAMOND1 .. "}";
-charmArr[4] = {};
-charmArr[4][0] = RAID_TARGET_4; -- Triangle
-charmArr[4][1] = "{" .. ICON_TAG_RAID_TARGET_TRIANGLE1 .. "}";
-charmArr[5] = {};
-charmArr[5][0] = RAID_TARGET_5; -- Moon
-charmArr[5][1] = "{" .. ICON_TAG_RAID_TARGET_MOON1 .. "}";
-charmArr[6] = {};
-charmArr[6][0] = RAID_TARGET_6; -- Square
-charmArr[6][1] = "{" .. ICON_TAG_RAID_TARGET_SQUARE1 .. "}";
-charmArr[7] = {};
-charmArr[7][0] = ICON_TAG_RAID_TARGET_CROSS2; -- Cross
-charmArr[7][1] = "{" .. ICON_TAG_RAID_TARGET_CROSS1 .. "}";
-charmArr[8] = {};
-charmArr[8][0] = RAID_TARGET_8; -- Skull
-charmArr[8][1] = "{" .. ICON_TAG_RAID_TARGET_SKULL1 .. "}";
-
--- Enchanced CC Members Array
-CCMembers = {};
-LuckyCharms = {};
 
 -- Additional Combat mechanisms
 LuckyCharms.waiting = false;
@@ -69,6 +39,223 @@ function LuckyCharms.Message(text)
     DEFAULT_CHAT_FRAME:AddMessage("|cffffd200" .. LC2NAME .. ":|r " .. tostring(text));
 end
 -- End Chat Function
+
+
+
+function LuckyCharms.RCAnchor(New_rcpos)
+    local f = _G["LCReadyCheck"];
+    if (f) then
+        f:ClearAllPoints();
+        if (New_rcpos == "left") then
+            f:SetPoint("LEFT", "LuckyCharmAnchorBar", "RIGHT", -2, 0);
+        elseif (New_rcpos == "right") then
+            f:SetPoint("RIGHT", "LuckyCharmAnchorBar", "LEFT", 2, 0);
+        elseif (New_rcpos == "top") then
+            f:SetPoint("BOTTOMRIGHT", "LuckyCharmAnchorBar", "TOPRIGHT", 0, -2);
+        else
+            f:SetPoint("TOPLEFT", "LuckyCharmAnchorBar", "BOTTOMLEFT", 0, 2);
+        end
+        LC2_Settings[LC2Profile].rcpos = New_rcpos;
+        LuckyCharms.Config.RCRadioPos(New_rcpos, 1);
+    end
+end
+
+function LuckyCharms.AddonLoaded(arg1)
+    if (arg1 == LC2NAME) then
+        -- -- Initialize Enchanced CC Members Array
+        for i = 1, 11 do
+            CCMembers[LC2Txt_CCClass[i]] = {};
+        end
+        -- CCMembers[LC2Txt_CCClass[1]] = {};
+        -- CCMembers[LC2Txt_CCClass[2]] = {};
+        -- CCMembers[LC2Txt_CCClass[3]] = {};
+        -- CCMembers[LC2Txt_CCClass[4]] = {};
+        -- CCMembers[LC2Txt_CCClass[5]] = {};
+        -- CCMembers[LC2Txt_CCClass[6]] = {};
+        -- CCMembers[LC2Txt_CCClass[7]] = {};
+        -- CCMembers[LC2Txt_CCClass[8]] = {};
+
+        -- Check for settings array.  Used for Profiles.
+        if (not LC2_Settings) then LC2_Settings = {}; end
+        -- Check for Profile Settings
+        if (not LC2_Settings[LC2Profile]) then
+            LC2_Settings[LC2Profile] = {};
+        end
+        -- Check for Settings Verison.  Use for upgrades
+        if (not LC2_Settings[LC2Profile].SettVer) then
+            -- LuckyCharms.Message("Setting Ver Not Found");--Debug
+            PrevSettVer = "";
+            LC2_Settings[LC2Profile].SettVer = LC2SettVer;
+        else
+            -- LuckyCharms.Message("Setting Ver Found.");--Debug
+            PrevSettVer = LC2_Settings[LC2Profile].SettVer;
+        end
+        -- Check for Settings, otherwise set defaults.
+        if (not LC2_Settings[LC2Profile].barstatus) then
+            LC2_Settings[LC2Profile].barstatus = "auto"; -- Charmbar display status
+        end
+        if (not LC2_Settings[LC2Profile].barscale) then
+            LC2_Settings[LC2Profile].barscale = 1.0; -- LC2 scale
+        end
+        if (not LC2_Settings[LC2Profile].tooltips) then
+            LC2_Settings[LC2Profile].tooltips = 1; -- Show Tooltips
+        end
+        if (not LC2_Settings[LC2Profile].ancstatus) then
+            LC2_Settings[LC2Profile].ancstatus = "show"; -- Anchor display status
+        end
+        if (not LC2_Settings[LC2Profile].ancpos) then
+            LC2_Settings[LC2Profile].ancpos = "left"; -- Anchor Position, relative to charmbar
+        end
+        if (not LC2_Settings[LC2Profile].alpha) then
+            LC2_Settings[LC2Profile].alpha = 1; -- LC2 Alpha
+        end
+        if (not LC2_Settings[LC2Profile].rcpos) then
+            LC2_Settings[LC2Profile].rcpos = "top"; -- Ready Check Button Position, Relative to Anchor
+        end
+        if (not LC2_Settings[LC2Profile].rcstatus) then
+            LC2_Settings[LC2Profile].rcstatus = "auto"; -- Ready Check Button Display Status
+        end
+        if (not LC2_Settings[LC2Profile].kopos) then
+            LC2_Settings[LC2Profile].kopos = "top"; -- Kill Order Position, Relative to CharmBar
+        end
+        if (not LC2_Settings[LC2Profile].kostatus) then
+            LC2_Settings[LC2Profile].kostatus = "auto"; -- Display Status of the Kill Order Bar
+        end
+        if (not LC2_Settings[LC2Profile].komode) then
+            LC2_Settings[LC2Profile].komode = "icons"; -- Kill Order Print Mode: text,icons
+        end
+        if (not LC2_Settings[LC2Profile].korw) then
+            LC2_Settings[LC2Profile].korw = 1; -- Enable Kill Order Print to Raid Warning.
+        end
+        if (not LC2_Settings[LC2Profile].kopr) then
+            LC2_Settings[LC2Profile].kopr = 1; -- Enable Kill Order Print to Party/Raid.
+        end
+        if (not LC2_Settings[LC2Profile].koctp) then
+            LC2_Settings[LC2Profile].koctp = "top";
+        end
+        if (not LC2_Settings[LC2Profile].korder) then
+            LC2_Settings[LC2Profile].korder = {8, 7, 6, 1, 2, 3, 4, 5}; -- Kill Order Array
+        end
+        if (not LC2_Settings[LC2Profile].charmcc) then
+            -- Charm CC Assignment Array
+            LC2_Settings[LC2Profile].charmcc = {};
+            for i = 1, 8 do
+                LC2_Settings[LC2Profile].charmcc[i] =
+                    {["name"] = "", ["icon"] = ""};
+            end
+        end
+        if (not LC2_Settings[LC2Profile].kocc) then
+            LC2_Settings[LC2Profile].kocc = 1; -- Enable CC Print to selected frames.
+        end
+        if (not LC2_Settings[LC2Profile].koprint) then
+            LC2_Settings[LC2Profile].koprint = 1; -- Enable CC Print to selected frames.
+        end
+        if (not LC2_Settings[LC2Profile].charmStatus) then
+            LC2_Settings[LC2Profile].charmStatus = {1, 1, 1, 1, 1, 1, 1, 1}; -- Charm Status Array 0-Disabled,1-Enabled
+        end
+        if (not LC2_Settings[LC2Profile].locked) then
+            LC2_Settings[LC2Profile].locked = 0; -- Lock Anchor
+        end
+
+        LuckyCharms.Config.Upgrade();
+
+        -- Setup UI
+        LuckyCharms.Config.ModScale(LC2_Settings[LC2Profile].barscale);
+        LuckyCharms.Config.InitSlider(LuckyCharmConfig_Slider1);
+        LuckyCharms.Config.InitAlphaSlider(LuckyCharmConfig_SliderAlpha);
+        -- Main Charm Bar
+        if (LC2_Settings[LC2Profile].barstatus == "show") then
+            LuckyCharmBar:Show();
+        else
+            LuckyCharmBar:Hide();
+        end
+        -- Anchor Bar
+        if (LC2_Settings[LC2Profile].ancstatus == "show") then
+            LuckyCharmAnchorBar:Show();
+        else
+            LuckyCharmAnchorBar:Hide();
+        end
+        -- Ready Check Button
+        if (LC2_Settings[LC2Profile].rcstatus == "show") then
+            LCReadyCheck:Show();
+        else
+            LCReadyCheck:Hide();
+        end
+        -- Kill Order Bar
+        if (LC2_Settings[LC2Profile].kostatus == "show") then
+            LCKillOrder:Show();
+        else
+            LCKillOrder:Hide();
+        end
+
+        LuckyCharms.Config.ModAlpha(LC2_Settings[LC2Profile].alpha);
+        LuckyCharms.RCAnchor(LC2_Settings[LC2Profile].rcpos);
+        LuckyCharms.Config.KOAnchor(LC2_Settings[LC2Profile].kopos);
+        LuckyCharms.Config.Radio(LC2_Settings[LC2Profile].barstatus, 1);
+        LuckyCharms.Config.AncRadio(LC2_Settings[LC2Profile].ancstatus, 1);
+        LuckyCharms.Config.AncRadioPos(LC2_Settings[LC2Profile].ancpos, 1);
+        LuckyCharms.Config.TTRadio(LC2_Settings[LC2Profile].tooltips, 1);
+        LuckyCharms.Config.RCRadio(LC2_Settings[LC2Profile].rcstatus, 1);
+        LuckyCharms.Config.RCRadioPos(LC2_Settings[LC2Profile].rcpos, 1);
+        LuckyCharms.Config.KORadio(LC2_Settings[LC2Profile].kostatus, 1);
+
+        -- -- Set Check Boxes on KO Config
+        LuckyCharmConfigKO_LC1CBDis:SetChecked(LC2_Settings[LC2Profile].charmStatus[1]);
+        LuckyCharmConfigKO_LC2CBDis:SetChecked(LC2_Settings[LC2Profile].charmStatus[2]);
+        LuckyCharmConfigKO_LC3CBDis:SetChecked(LC2_Settings[LC2Profile].charmStatus[3]);
+        LuckyCharmConfigKO_LC4CBDis:SetChecked(LC2_Settings[LC2Profile].charmStatus[4]);
+        LuckyCharmConfigKO_LC5CBDis:SetChecked(LC2_Settings[LC2Profile].charmStatus[5]);
+        LuckyCharmConfigKO_LC6CBDis:SetChecked(LC2_Settings[LC2Profile].charmStatus[6]);
+        LuckyCharmConfigKO_LC7CBDis:SetChecked(LC2_Settings[LC2Profile].charmStatus[7]);
+        LuckyCharmConfigKO_LC8CBDis:SetChecked(LC2_Settings[LC2Profile].charmStatus[8]);
+        LuckyCharmConfigKO_KOcbPR:SetChecked(LC2_Settings[LC2Profile].kopr);
+        LuckyCharmConfigKO_KOcbRW:SetChecked(LC2_Settings[LC2Profile].korw);
+        LuckyCharmConfigKO_KOCCRW:SetChecked(LC2_Settings[LC2Profile].kocc);
+        LuckyCharmConfigKO_KOPrintCheck:SetChecked(LC2_Settings[LC2Profile].koprint);
+
+        if (LC2_Settings[LC2Profile].locked == 0) then
+            LCBDragButtonIcon:SetTexture(unlockImage);
+        else
+            LCBDragButtonIcon:SetTexture(lockImage);
+        end
+
+        LCRCButton:SetText(READY_CHECKABBRV);
+        LCKOButton:SetText(LC2TXT_KOABBRV);
+        LuckyCharms.Config.InitConfigDropDowns();
+        LuckyCharms.DrawCharms();
+        LuckyCharms.UpdateCCAssignments();
+        LuckyCharms.InitCCButtons();
+
+        if (not LBF) then
+            -- LuckyCharms.Message("Setting BG, Border, TexCoords");--Debug
+            _G["LuckyCharmBar"]:SetBackdrop(
+                {
+                    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+                    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+                    tile = true,
+                    tileSize = 10,
+                    edgeSize = 16,
+                    insets = {left = 4, right = 4, top = 4, bottom = 4}
+                });
+
+            -- _G["LuckyCharmBar"]:SetBackdrop(BACKDROP_TOAST_12_12);
+            -- _G["LuckyCharmAnchorBar"]:SetBackdrop(BACKDROP_TOAST_12_12);
+            _G["LuckyCharmAnchorBar"]:SetBackdrop(
+                {
+                    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+                    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+                    tile = true,
+                    tileSize = 10,
+                    edgeSize = 16,
+                    insets = {left = 4, right = 4, top = 4, bottom = 4}
+                });
+        end
+
+        LuckyCharms.SetTexCoords();
+
+        LuckyCharms.Message(LC2Version .. " " .. LC2TXT_LOADED);
+    end
+end
 
 function LuckyCharms.DragOnEnter(self)
     -- LuckyCharms.Message(self);--Debug
@@ -142,13 +329,183 @@ function LuckyCharms.OnCharmClick(mouseButton, self)
             -- for k,v in pairs(LC2_Settings[LC2Profile].charmcc[charmNum]) do print(k,v) end --debug
             if (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] ~= nil and
                 LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] ~= "") then
-                if (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 1 or
-                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 3 or
-                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 4 or
-                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 15 or
-                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 16) then
-                    -- Druid Cyclone, Hunter Freezing Trap, Hunter Wyvern Sting, Warlock Fear, Druid Entangling Roots
+                --Target Unit Type ANY
+                if (
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 1 or -- Druid Cyclone
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 3 or -- Hunter Freezing Trap
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 4 or -- Hunter Wyvern Sting
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 15 or -- Warlock Fear 
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 16 or -- Druid Entangling Roots
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 18 or -- Death Knight Death Grip
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 19 -- Monk Paralysis
+                ) then
                     SetRaidTarget("target", charmNum);
+                --Target Unit Type Beasts
+                elseif (uct ~= LC2TXT_UTYPE[1]) then
+                    if(
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 2 or -- Druid Hibernate
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 5 or --Polymorph, Mage
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 9 or --Sap, Rogue
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 10 or --Hex, Shaman
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 20 --Imprison, Demon Hunter
+                    ) then
+                        SetRaidTarget("target", charmNum);
+                    else
+                        LuckyCharms.Message(
+                            "|cFFEE0000" ..
+                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
+                        UIErrorsFrame:AddMessage(
+                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
+                            53, 5);
+                    end
+                --Target Unit Type Demon
+                elseif (uct ~= LC2TXT_UTYPE[3]) then
+                    if(
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 6 or --Repentance, Paladin
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 9 or --Sap, Rogue
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 13 or --Banish, Warlock
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 14 or --Enslave Demon, Warlock
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 20 --Imprison, Demon Hunter
+                    ) then
+                        SetRaidTarget("target", charmNum);
+                    else
+                        LuckyCharms.Message(
+                            "|cFFEE0000" ..
+                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
+                        UIErrorsFrame:AddMessage(
+                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
+                            53, 5);
+                    end
+                --Target Unit Type Undead
+                elseif (uct ~= LC2TXT_UTYPE[6]) then
+                    if(
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 6 or --Repentance, Paladin
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 7 or --Shackle Undead, Priest
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 17 --Control Undead, DK
+                    ) then
+                        SetRaidTarget("target", charmNum);
+                    else
+                        LuckyCharms.Message(
+                            "|cFFEE0000" ..
+                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
+                        UIErrorsFrame:AddMessage(
+                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
+                            53, 5);
+                    end
+                --Target Unit Type Humanoid
+                elseif (uct ~= LC2TXT_UTYPE[7]) then
+                    if(
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 5 or --Polymorph, Mage
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 6 or --Repentance, Paladin
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 8 or --Mind Control, Priest
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 9 or --Sap, Rogue
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 10 or --Hex, Sham
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 12 or --Seduction Warlock Succ
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 20 --Imprison, Demon Hunter
+                    ) then
+                        SetRaidTarget("target", charmNum);
+                    else
+                        LuckyCharms.Message(
+                            "|cFFEE0000" ..
+                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
+                        UIErrorsFrame:AddMessage(
+                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
+                            53, 5);
+                    end
+                --Target Unit Type Dragonkin
+                elseif (uct ~= LC2TXT_UTYPE[2]) then
+                    if(
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 2 or -- Druid Hibernate
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 6 or --Repentance, Paladin
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 9 --Sap, Rogue
+                    ) then
+                        SetRaidTarget("target", charmNum);
+                    else
+                        LuckyCharms.Message(
+                            "|cFFEE0000" ..
+                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
+                        UIErrorsFrame:AddMessage(
+                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
+                            53, 5);
+                    end
+                --Target Unit Type Elemental
+                elseif (uct ~= LC2TXT_UTYPE[4]) then
+                    if(
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 11 or --Bind Elemental, Sham *Removed
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 13 --Banish, Warlock
+                    ) then
+                        SetRaidTarget("target", charmNum);
+                    else
+                        LuckyCharms.Message(
+                            "|cFFEE0000" ..
+                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
+                        UIErrorsFrame:AddMessage(
+                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
+                            53, 5);
+                    end
+                --Target Unit Type Abbarition
+                elseif (uct ~= LC2TXT_UTYPE[14]) then
+                    if(
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 13--Banish, Warlock
+                    ) then
+                        SetRaidTarget("target", charmNum);
+                    else
+                        LuckyCharms.Message(
+                            "|cFFEE0000" ..
+                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
+                        UIErrorsFrame:AddMessage(
+                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
+                            53, 5);
+                    end
+                --Target Unit Type Giant
+                elseif (uct ~= LC2TXT_UTYPE[5]) then
+                    if(
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 6 --Repentance, Paladin
+                    ) then
+                        SetRaidTarget("target", charmNum);
+                    else
+                        LuckyCharms.Message(
+                            "|cFFEE0000" ..
+                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
+                        UIErrorsFrame:AddMessage(
+                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
+                            53, 5);
+                    end
+                --Target Unit Type Critter
+                elseif (uct ~= LC2TXT_UTYPE[8]) then
+                    if(
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 5 --Polymorph, Mage
+                    ) then
+                        SetRaidTarget("target", charmNum);
+                    else
+                        LuckyCharms.Message(
+                            "|cFFEE0000" ..
+                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
+                        UIErrorsFrame:AddMessage(
+                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
+                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
+                            53, 5);
+                    end
+                end
+                
+                --[[
                 elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 2) then -- Druid Hibernate
                     if (uct ~= LC2TXT_UTYPE[1] and uct ~= LC2TXT_UTYPE[2]) then -- Beasts, Dragonkin
                         LuckyCharms.Message(
@@ -162,6 +519,7 @@ function LuckyCharms.OnCharmClick(mouseButton, self)
                     else
                         SetRaidTarget("target", charmNum);
                     end
+                --Target Unit Type 
                 elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 5) then -- Mage Polymorph
                     if (uct ~= LC2TXT_UTYPE[1] and uct ~= LC2TXT_UTYPE[7] and
                         uct ~= LC2TXT_UTYPE[8]) then -- Humanoid, Beast, Critter
@@ -176,6 +534,7 @@ function LuckyCharms.OnCharmClick(mouseButton, self)
                     else
                         SetRaidTarget("target", charmNum);
                     end
+                --Target Unit Type 
                 elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 6) then -- Repentance (Talent), Paladin
                     if (uct ~= LC2TXT_UTYPE[7] and uct ~= LC2TXT_UTYPE[6] and
                         uct ~= LC2TXT_UTYPE[5] and uct ~= LC2TXT_UTYPE[3] and
@@ -191,6 +550,7 @@ function LuckyCharms.OnCharmClick(mouseButton, self)
                     else
                         SetRaidTarget("target", charmNum);
                     end
+                --Target Unit Type 
                 elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 7) then -- Shackle Undead, Priest
                     if (uct ~= LC2TXT_UTYPE[6]) then -- Undead
                         LuckyCharms.Message(
@@ -204,6 +564,7 @@ function LuckyCharms.OnCharmClick(mouseButton, self)
                     else
                         SetRaidTarget("target", charmNum);
                     end
+                --Target Unit Type 
                 elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 8) then -- Mind Control, Priest
                     if (uct ~= LC2TXT_UTYPE[7]) then -- Humanoid
                         LuckyCharms.Message(
@@ -217,6 +578,7 @@ function LuckyCharms.OnCharmClick(mouseButton, self)
                     else
                         SetRaidTarget("target", charmNum);
                     end
+                --Target Unit Type 
                 elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 9) then -- Sap, Rogue
                     if (uct ~= LC2TXT_UTYPE[7] and uct ~= LC2TXT_UTYPE[1] and
                         uct ~= LC2TXT_UTYPE[3] and uct ~= LC2TXT_UTYPE[2]) then -- Humanoid, Beasts, Demons, Dragonkin
@@ -297,6 +659,7 @@ function LuckyCharms.OnCharmClick(mouseButton, self)
                         SetRaidTarget("target", charmNum);
                     end
                 end
+                ]]
             else
                 SetRaidTarget("target", charmNum);
             end
@@ -390,6 +753,15 @@ function LuckyCharms.CCDD_Init(self, level)
         elseif (i == 8) then
             x = table.getn(LC2Txt_WarlockCC);
             arr = LC2Txt_WarlockCC;
+        elseif (i == 9) then
+            x = table.getn(LC2Txt_DeathKnightCC);
+            arr = LC2Txt_DeathKnightCC;
+        elseif (i == 10) then
+            x = table.getn(LC2Txt_MonkCC);
+            arr = LC2Txt_MonkCC;
+        elseif (i == 11) then
+            x = table.getn(LC2Txt_DemonHunterCC);
+            arr = LC2Txt_DemonHunterCC;
         end
 
         local z = 1;
@@ -492,18 +864,7 @@ function LuckyCharms.CCDD_Init(self, level)
     end -- if level 3
 end
 
--- Hook the tooltips on UIDropDownMenu for CC Spell Display
-hooksecurefunc("GameTooltip_AddNewbieTip",
-               function(frame, normalText, r, g, b, newbieText, noNormalText)
-    if (normalText == "LC2CCShowTooltip" and LC2_Settings[LC2Profile].tooltips ==
-        1) then
-        GameTooltip_SetDefaultAnchor(GameTooltip, frame)
-        GameTooltip:ClearLines();
 
-        GameTooltip:SetSpellByID(newbieText);
-        GameTooltip:Show();
-    end
-end);
 
 function LuckyCharms.CCDD_OnClick(self, arg1)
     local owner = self:GetName();
@@ -804,23 +1165,6 @@ function LuckyCharms.KOCTextPos(new_pos)
         LuckyCharms.KOCTextPos("top");
     end
 end
-
-function LuckyCharms.RCAnchor(New_rcpos)
-    LCReadyCheck:ClearAllPoints();
-    if (New_rcpos == "left") then
-        LCReadyCheck:SetPoint("LEFT", "LuckyCharmAnchorBar", "RIGHT", -2, 0);
-    elseif (New_rcpos == "right") then
-        LCReadyCheck:SetPoint("RIGHT", "LuckyCharmAnchorBar", "LEFT", 2, 0);
-    elseif (New_rcpos == "top") then
-        LCReadyCheck:SetPoint("BOTTOMRIGHT", "LuckyCharmAnchorBar", "TOPRIGHT",
-                              0, -2);
-    else
-        LCReadyCheck:SetPoint("TOPLEFT", "LuckyCharmAnchorBar", "BOTTOMLEFT", 0,
-                              2);
-    end
-    LC2_Settings[LC2Profile].rcpos = New_rcpos;
-    LuckyCharms.Config.RCRadioPos(New_rcpos, 1);
-end
 -- End Anchor Creation
 
 -- Return Anchor Position
@@ -832,16 +1176,6 @@ function LuckyCharms.RetBarPos(bpos)
     end
 end
 -- End Return Anchor Position
-
-function LuckyCharmsOnLoad(self)
-    self:RegisterEvent('PLAYER_ENTERING_WORLD');
-    self:RegisterEvent('ADDON_LOADED');
-    self:RegisterEvent('GROUP_ROSTER_UPDATE');
-    self:RegisterEvent('PLAYER_LOGIN');
-    self:RegisterEvent('PLAYER_REGEN_ENABLED');
-    PetBattleFrame:HookScript("OnShow", function() self:Hide() end)
-    PetBattleFrame:HookScript("OnHide", function() self:Show() end)
-end
 
 function LuckyCharms.DoUpdate()
     -- LuckyCharms.Message("DEBUG: DoUpdate Called!");
@@ -1021,244 +1355,7 @@ function LuckyCharms.UpdateCCList()
     -- end
 end
 
-function LuckyCharmsOnEvent(self, event, ...)
-    -- LuckyCharms.Message(event .. " Called!"); -- Debug
-    if (event == "ADDON_LOADED") then
-        local arg1 = ...;
-        -- LuckyCharms.Message(arg1 .. " Called!"); -- Debug
-        if (arg1 == LC2NAME) then
-            -- Initialize Enchanced CC Members Array
-            CCMembers[LC2Txt_CCClass[1]] = {};
-            CCMembers[LC2Txt_CCClass[2]] = {};
-            CCMembers[LC2Txt_CCClass[3]] = {};
-            CCMembers[LC2Txt_CCClass[4]] = {};
-            CCMembers[LC2Txt_CCClass[5]] = {};
-            CCMembers[LC2Txt_CCClass[6]] = {};
-            CCMembers[LC2Txt_CCClass[7]] = {};
-            CCMembers[LC2Txt_CCClass[8]] = {};
 
-            -- Check for settings array.  Used for Profiles.
-            if (not LC2_Settings) then LC2_Settings = {}; end
-            -- Check for Profile Settings
-            if (not LC2_Settings[LC2Profile]) then
-                LC2_Settings[LC2Profile] = {};
-            end
-            -- Check for Settings Verison.  Use for upgrades
-            if (not LC2_Settings[LC2Profile].SettVer) then
-                -- LuckyCharms.Message("Setting Ver Not Found");--Debug
-                PrevSettVer = "";
-                LC2_Settings[LC2Profile].SettVer = LC2SettVer;
-            else
-                -- LuckyCharms.Message("Setting Ver Found.");--Debug
-                PrevSettVer = LC2_Settings[LC2Profile].SettVer;
-            end
-            -- Check for Settings, otherwise set defaults.
-            if (not LC2_Settings[LC2Profile].barstatus) then
-                LC2_Settings[LC2Profile].barstatus = "auto"; -- Charmbar display status
-            end
-            if (not LC2_Settings[LC2Profile].barscale) then
-                LC2_Settings[LC2Profile].barscale = 1.0; -- LC2 scale
-            end
-            if (not LC2_Settings[LC2Profile].tooltips) then
-                LC2_Settings[LC2Profile].tooltips = 1; -- Show Tooltips
-            end
-            if (not LC2_Settings[LC2Profile].ancstatus) then
-                LC2_Settings[LC2Profile].ancstatus = "show"; -- Anchor display status
-            end
-            if (not LC2_Settings[LC2Profile].ancpos) then
-                LC2_Settings[LC2Profile].ancpos = "left"; -- Anchor Position, relative to charmbar
-            end
-            if (not LC2_Settings[LC2Profile].alpha) then
-                LC2_Settings[LC2Profile].alpha = 1; -- LC2 Alpha
-            end
-            if (not LC2_Settings[LC2Profile].rcpos) then
-                LC2_Settings[LC2Profile].rcpos = "top"; -- Ready Check Button Position, Relative to Anchor
-            end
-            if (not LC2_Settings[LC2Profile].rcstatus) then
-                LC2_Settings[LC2Profile].rcstatus = "auto"; -- Ready Check Button Display Status
-            end
-            if (not LC2_Settings[LC2Profile].kopos) then
-                LC2_Settings[LC2Profile].kopos = "top"; -- Kill Order Position, Relative to CharmBar
-            end
-            if (not LC2_Settings[LC2Profile].kostatus) then
-                LC2_Settings[LC2Profile].kostatus = "auto"; -- Display Status of the Kill Order Bar
-            end
-            if (not LC2_Settings[LC2Profile].komode) then
-                LC2_Settings[LC2Profile].komode = "icons"; -- Kill Order Print Mode: text,icons
-            end
-            if (not LC2_Settings[LC2Profile].korw) then
-                LC2_Settings[LC2Profile].korw = 1; -- Enable Kill Order Print to Raid Warning.
-            end
-            if (not LC2_Settings[LC2Profile].kopr) then
-                LC2_Settings[LC2Profile].kopr = 1; -- Enable Kill Order Print to Party/Raid.
-            end
-            if (not LC2_Settings[LC2Profile].koctp) then
-                LC2_Settings[LC2Profile].koctp = "top";
-            end
-            if (not LC2_Settings[LC2Profile].korder) then
-                LC2_Settings[LC2Profile].korder = {8, 7, 6, 1, 2, 3, 4, 5}; -- Kill Order Array
-            end
-            if (not LC2_Settings[LC2Profile].charmcc) then
-                -- Charm CC Assignment Array
-                LC2_Settings[LC2Profile].charmcc = {};
-                for i = 1, 8 do
-                    LC2_Settings[LC2Profile].charmcc[i] =
-                        {["name"] = "", ["icon"] = ""};
-                end
-            end
-            if (not LC2_Settings[LC2Profile].kocc) then
-                LC2_Settings[LC2Profile].kocc = 1; -- Enable CC Print to selected frames.
-            end
-            if (not LC2_Settings[LC2Profile].koprint) then
-                LC2_Settings[LC2Profile].koprint = 1; -- Enable CC Print to selected frames.
-            end
-            if (not LC2_Settings[LC2Profile].charmStatus) then
-                LC2_Settings[LC2Profile].charmStatus = {1, 1, 1, 1, 1, 1, 1, 1}; -- Charm Status Array 0-Disabled,1-Enabled
-            end
-            if (not LC2_Settings[LC2Profile].locked) then
-                LC2_Settings[LC2Profile].locked = 0; -- Lock Anchor
-            end
-
-            LuckyCharms.Config.Upgrade();
-
-            -- Setup UI
-            LuckyCharms.Config.ModScale(LC2_Settings[LC2Profile].barscale);
-            LuckyCharms.Config.InitSlider(LuckyCharmConfig_Slider1);
-            LuckyCharms.Config.InitAlphaSlider(LuckyCharmConfig_SliderAlpha);
-            -- Main Charm Bar
-            if (LC2_Settings[LC2Profile].barstatus == "show") then
-                LuckyCharmBar:Show();
-            else
-                LuckyCharmBar:Hide();
-            end
-            -- Anchor Bar
-            if (LC2_Settings[LC2Profile].ancstatus == "show") then
-                LuckyCharmAnchorBar:Show();
-            else
-                LuckyCharmAnchorBar:Hide();
-            end
-            -- Ready Check Button
-            if (LC2_Settings[LC2Profile].rcstatus == "show") then
-                LCReadyCheck:Show();
-            else
-                LCReadyCheck:Hide();
-            end
-            -- Kill Order Bar
-            if (LC2_Settings[LC2Profile].kostatus == "show") then
-                LCKillOrder:Show();
-            else
-                LCKillOrder:Hide();
-            end
-
-            LuckyCharms.Config.ModAlpha(LC2_Settings[LC2Profile].alpha);
-            LuckyCharms.RCAnchor(LC2_Settings[LC2Profile].rcpos);
-            LuckyCharms.Config.KOAnchor(LC2_Settings[LC2Profile].kopos);
-            LuckyCharms.Config.Radio(LC2_Settings[LC2Profile].barstatus, 1);
-            LuckyCharms.Config.AncRadio(LC2_Settings[LC2Profile].ancstatus, 1);
-            LuckyCharms.Config.AncRadioPos(LC2_Settings[LC2Profile].ancpos, 1);
-            LuckyCharms.Config.TTRadio(LC2_Settings[LC2Profile].tooltips, 1);
-            LuckyCharms.Config.RCRadio(LC2_Settings[LC2Profile].rcstatus, 1);
-            LuckyCharms.Config.RCRadioPos(LC2_Settings[LC2Profile].rcpos, 1);
-            LuckyCharms.Config.KORadio(LC2_Settings[LC2Profile].kostatus, 1);
-
-            -- Set Check Boxes on KO Config
-            LuckyCharmConfigKO_LC1CBDis:SetChecked(
-                LC2_Settings[LC2Profile].charmStatus[1]);
-            LuckyCharmConfigKO_LC2CBDis:SetChecked(
-                LC2_Settings[LC2Profile].charmStatus[2]);
-            LuckyCharmConfigKO_LC3CBDis:SetChecked(
-                LC2_Settings[LC2Profile].charmStatus[3]);
-            LuckyCharmConfigKO_LC4CBDis:SetChecked(
-                LC2_Settings[LC2Profile].charmStatus[4]);
-            LuckyCharmConfigKO_LC5CBDis:SetChecked(
-                LC2_Settings[LC2Profile].charmStatus[5]);
-            LuckyCharmConfigKO_LC6CBDis:SetChecked(
-                LC2_Settings[LC2Profile].charmStatus[6]);
-            LuckyCharmConfigKO_LC7CBDis:SetChecked(
-                LC2_Settings[LC2Profile].charmStatus[7]);
-            LuckyCharmConfigKO_LC8CBDis:SetChecked(
-                LC2_Settings[LC2Profile].charmStatus[8]);
-            LuckyCharmConfigKO_KOcbPR:SetChecked(LC2_Settings[LC2Profile].kopr);
-            LuckyCharmConfigKO_KOcbRW:SetChecked(LC2_Settings[LC2Profile].korw);
-            LuckyCharmConfigKO_KOCCRW:SetChecked(LC2_Settings[LC2Profile].kocc);
-            LuckyCharmConfigKO_KOPrintCheck:SetChecked(
-                LC2_Settings[LC2Profile].koprint);
-
-            if (LC2_Settings[LC2Profile].locked == 0) then
-                LCBDragButtonIcon:SetTexture(unlockImage);
-            else
-                LCBDragButtonIcon:SetTexture(lockImage);
-            end
-
-            LCRCButton:SetText(READY_CHECKABBRV);
-            LCKOButton:SetText(LC2TXT_KOABBRV);
-            LuckyCharms.Config.InitConfigDropDowns();
-            LuckyCharms.DrawCharms();
-            LuckyCharms.UpdateCCAssignments();
-            LuckyCharms.InitCCButtons();
-
-            if (not LBF) then
-                -- LuckyCharms.Message("Setting BG, Border, TexCoords");--Debug
-                -- local f = _G["LuckyCharmBar"];
-                LuckyCharmBar:SetBackdrop(
-                    {
-                        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-                        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-                        tile = true,
-                        tileSize = 10,
-                        edgeSize = 16,
-                        insets = {left = 4, right = 4, top = 4, bottom = 4}
-                    });
-
-                LuckyCharmAnchorBar:SetBackdrop(
-                    {
-                        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-                        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-                        tile = true,
-                        tileSize = 10,
-                        edgeSize = 16,
-                        insets = {left = 4, right = 4, top = 4, bottom = 4}
-                    });
-            end
-
-            LuckyCharms.SetTexCoords();
-
-            LuckyCharms.Message(LC2Version .. " " .. LC2TXT_LOADED);
-        end
-    end
-
-    -- Set Auto Features
-    if (event == "PLAYER_ENTERING_WORLD" or event == "GROUP_ROSTER_UPDATE") then
-        table.insert(LuckyCharms.waitEvents, "frames");
-
-        if InCombatLockdown() then
-            LuckyCharms.waiting = true;
-            return;
-        end
-
-        LuckyCharms.DoUpdate();
-    end
-
-    -- Get CC Chars List
-    if (event == "GROUP_ROSTER_UPDATE") then
-        table.insert(LuckyCharms.waitEvents, "cc");
-
-        if InCombatLockdown() then
-            LuckyCharms.waiting = true;
-            return;
-        end
-
-        LuckyCharms.DoUpdate();
-    end
-
-    if (event == "PLAYER_REGEN_ENABLED") then
-        -- LuckyCharms.Message("DEBUG: Player Left Combat!");
-        if LuckyCharms.waiting then
-            LuckyCharms.waiting = false;
-            LuckyCharms.DoUpdate();
-        end
-    end
-end
 
 function LuckyCharms.SetTexCoords()
     for i = 0, 8 do
@@ -1319,7 +1416,7 @@ function LuckyCharms.DrawCharms()
                 end);
                 local t = _G["LuckyCharm" .. charmNum .. "Icon"];
                 t:SetTexture("Interface\\TARGETINGFRAME\\UI-RaidTargetingIcons");
-                LuckyCharms.Message("Created: " .. b:GetName());
+                --LuckyCharms.Message("Created: " .. b:GetName());--DEBUG
             end
 
             --Set Anchors for KO buttons.
@@ -1570,3 +1667,69 @@ function LuckyCharms.PrntChatMsg()
         end
     end
 end
+
+--Addon OnLoad
+function LuckyCharms_OnLoad(self)
+    --LuckyCharms.Message("DEBUG: OnLoad Called!");
+    self:RegisterEvent('PLAYER_ENTERING_WORLD');
+    self:RegisterEvent('ADDON_LOADED');
+    self:RegisterEvent('GROUP_ROSTER_UPDATE');
+    self:RegisterEvent('PLAYER_LOGIN');
+    self:RegisterEvent('PLAYER_REGEN_ENABLED');
+    PetBattleFrame:HookScript("OnShow", function() self:Hide() end)
+    PetBattleFrame:HookScript("OnHide", function() self:Show() end)
+end
+
+--ONEVENT
+function LuckyCharms_OnEvent(self, event, ...)
+    --LuckyCharms.Message(event .. " Called!"); -- Debug
+    if (event == "ADDON_LOADED") then
+        local arg1 = ...;
+        --LuckyCharms.Message(arg1 .. " Loaded Called!"); -- Debug
+        LuckyCharms.AddonLoaded(arg1);
+    end
+
+    -- Set Auto Features
+    if (event == "PLAYER_ENTERING_WORLD" or event == "GROUP_ROSTER_UPDATE") then
+        table.insert(LuckyCharms.waitEvents, "frames");
+
+        if InCombatLockdown() then
+            LuckyCharms.waiting = true;
+            return;
+        end
+
+        LuckyCharms.DoUpdate();
+    end
+
+    -- Get CC Chars List
+    if (event == "GROUP_ROSTER_UPDATE") then
+        table.insert(LuckyCharms.waitEvents, "cc");
+
+        if InCombatLockdown() then
+            LuckyCharms.waiting = true;
+            return;
+        end
+
+        LuckyCharms.DoUpdate();
+    end
+
+    if (event == "PLAYER_REGEN_ENABLED") then
+        -- LuckyCharms.Message("DEBUG: Player Left Combat!");
+        if LuckyCharms.waiting then
+            LuckyCharms.waiting = false;
+            LuckyCharms.DoUpdate();
+        end
+    end
+end
+
+-- Hook the tooltips on UIDropDownMenu for CC Spell Display
+-- hooksecurefunc("GameTooltip_AddNewbieTip", function(frame, normalText, r, g, b, newbieText, noNormalText)
+--     if (normalText == "LC2CCShowTooltip" and LC2_Settings[LC2Profile].tooltips ==
+--         1) then
+--         GameTooltip_SetDefaultAnchor(GameTooltip, frame)
+--         GameTooltip:ClearLines();
+
+--         GameTooltip:SetSpellByID(newbieText);
+--         GameTooltip:Show();
+--     end
+-- end);

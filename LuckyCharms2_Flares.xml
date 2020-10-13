@@ -9,16 +9,17 @@ Project Path: f:\Games\World of Warcraft\_retail_\Interface\AddOns\LuckyCharms2
 
 Created Date: Saturday, August 29th 2020, 8:20:29 am
 
-Author: Ketutastic
+Author: KetuSolo
 ___
-Last Modified: Tuesday, September 1st 2020, 8:58:52 am
+Last Modified: Monday, October 12th 2020, 7:44:52 pm
 
-Modified By: Ketutastic
+Modified By: KetuSolo
 ___
 Copyright (c) 2020 Ketu Gaming
 ___
 -->
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 	<Script file="LuckyCharms2_Flares.lua"/>
 	<Button name="LC2_FlareBtnVirtual" virtual="true" inherits="SecureActionButtonTemplate">
@@ -44,8 +45,8 @@ ___
 		<PushedTexture file="Interface\Buttons\UI-QuickSlot-Depress"/>
 		<HighlightTexture alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
 	</Button>
-	
-	<Frame name="LuckyCharmsFlares_main" parent="UIParent" clampedToScreen="true" enableMouse="true">
+
+	<Frame name="LuckyCharmsFlares_main" parent="UIParent" clampedToScreen="true" enableMouse="true" inherits="BackdropTemplate">
 		<Size>
 			<AbsDimension x="135" y="30" />
 		</Size>

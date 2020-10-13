@@ -9,11 +9,11 @@ Project Path: f:\Games\World of Warcraft\_retail_\Interface\AddOns\LuckyCharms2
 
 Created Date: Saturday, August 29th 2020, 8:20:29 am
 
-Author: Ketutastic
+Author: KetuSolo
 ___
-Last Modified: Tuesday, September 1st 2020, 11:11:14 am
+Last Modified: Monday, October 12th 2020, 8:33:12 pm
 
-Modified By: Ketutastic
+Modified By: KetuSolo
 ___
 Copyright (c) 2020 Ketu Gaming
 ___
@@ -112,7 +112,10 @@ ___
 			</Layer>
 		</Layers>
 		<Frames>
-			<Slider name="$parent_Slider1" inherits="OptionsSliderTemplate" minValue="0.1" maxValue="3.0" valueStep="0.1">
+			<Slider name="$parent_Slider1" inherits="OptionsSliderTemplate, BackdropTemplate" minValue="0.1" maxValue="3.0" valueStep="0.1">
+				<KeyValues>
+					<KeyValue key="backdropInfo" value="BACKDROP_SLIDER_8_8" type="global"/>
+				</KeyValues>
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
@@ -122,11 +125,11 @@ ___
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-          	_G[self:GetName().."High"]:SetText("3.0");
+          				_G[self:GetName().."High"]:SetText("3.0");
 						_G[self:GetName().."Low"]:SetText("0.1");
 					</OnLoad>
 					<OnValueChanged>
-          	LuckyCharms.Config.SliderChange(self:GetName());
+          				LuckyCharms.Config.SliderChange(self:GetName());
 					</OnValueChanged>
 				</Scripts>
 			</Slider>
@@ -140,7 +143,7 @@ ___
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-          	_G[self:GetName().."High"]:SetText("1.0");
+          				_G[self:GetName().."High"]:SetText("1.0");
 						_G[self:GetName().."Low"]:SetText("0.0");
 					</OnLoad>
 					<OnValueChanged>
