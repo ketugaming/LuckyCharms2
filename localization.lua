@@ -11,7 +11,7 @@
  
  Author: KetuSolo
  ___
- Last Modified: Monday, October 12th 2020, 8:39:35 pm
+ Last Modified: Wednesday, October 14th 2020, 10:46:33 am
  
  Modified By: KetuSolo
  ___
@@ -41,11 +41,13 @@ function Localize()
 	end
 
 	--Version
-	LC2Version = "v9.0.0.10122020";
+	LC2Version = "v9.0.0.101420";
 	LC2SettVer = "1.3";
+	-- Maybe add All fears later (Fleeing on WH)? //QUESTION 
+	-- Maybe add All stuns later (Stunned on WH)? //QUESTION 
 
 	--Crowd Control Spells {idx,spellid}
-	--Last CCID = 20
+	--Last CCID = 29
 	LC2Txt_DruidCC = {--Spell IDs of CC spells for Druids
 		--{1,33786},--Cyclone, Druid, 1 Any [1] *Moved to PVP Talent
 		{2,2637},--Hibernate, Druid, 1 Beast,Dragonkin [2]
@@ -53,25 +55,31 @@ function Localize()
 	};
 
 	LC2Txt_HunterCC = {--Spell IDs of CC spells for Hunters
-		--{3,1499},--Freezing Trap, Hunter, 1 Any [1] *REMOVED
-		{4,19386},--Wyvern Sting, Hunter, 1 Any [2]: Addl IDs 260457,26233,24335
+		{3,3355},--Freezing Trap, Hunter, 1 Any [1]
+		{4,19386},--Wyvern Sting, Hunter, 1 Any [2]: Addl IDs 260457
+		{22,194275},--Wyvern Hatchet Toss, Hunter, 1 Any [3]
+		{29,162480},--Steel Trap, Hunter, 1 Any
 	};
 
 	LC2Txt_MageCC = {--Spell IDs of CC spells for Mage
 		{5,118},--Polymorph, Mage, 1 Humanoid, Beast, Critter [1]: Addl IDs 161372,28272,161354,61780,161355,161353,61721,28271,277792,61305,277787,126819
+		{27,82691},--Ring of Frost, Mage, 10 Any
 	};
 
 	LC2Txt_PaladinCC = {--Spell IDs of CC spells for Paladin
 		{6,20066},--Repentance (Talent), Paladin, 1 Humanoid, Undead, Dragonkin, Giant, Demon [1]
+		{21,10326},--Turn Evil, Paladin, 1 Undead, Aberration, Demon [2] 145067
 	};
 
 	LC2Txt_PriestCC = {--Spell IDs of CC spells for Priest
 		{7,9484},--Shackle Undead, Priest, 1 Undead [1]
-		{8,605},--Mind Control, Priest, 1 Humanoid [2]
+		{8,605},--Mind Control, Priest, 1 Humanoid [2] 205364
 	};
 
 	LC2Txt_RogueCC = {--Spell IDs of CC spells for Rogue
 		{9,6770},--Sap, Rogue, 1 Humanoid, Beasts, Demons, Dragonkin [1]
+		{23,2094},--Blind, Rogue, 1 Any [2]
+		{26,1725},--Distract, Rogue, Any [3]
 	};
 
 	LC2Txt_ShamanCC = {--Spell IDs of CC spells for Shaman
@@ -80,19 +88,22 @@ function Localize()
 	};
 
 	LC2Txt_WarlockCC = {--Spell IDs of CC spells for Warlocks
-		{12,6358},--Seduction (Succubus), Warlock, 1 Humanoid [1]
+		{12,6358},--Seduction (Succubus), Warlock, 1 Humanoid [1]  261589
 		{13,710},--Banish, Warlock, 1 Demon, Aberration, or Elemental [2]
-		{14,1098},--Enslave Demon, Warlock, 1 demon [3]
+		{14,1098},--Subjugate Demon, Warlock, 1 demon [3] *Formerly Enslave Demon
 		{15,5782},--Fear, Warlock, Any [4]
 	};
 
 	LC2Txt_DeathKnightCC = {
 		{17,111673},--Control Undead, Death Knight, 1 Undead [1]
-		{18,49576},--Death Grip, Death Knight, Any [2]
+		{18,49576},--Death Grip, Death Knight, Any [2] 311977
+		{24,207167},--Blinding Sleet, DK (Frost), Any [3]
+		{28,96294},--Chains of Ice, DK, 1 Any
 	};
 
 	LC2Txt_MonkCC = {
 		{19,115078},--Paralysis, Monk, 1 Any [1]
+		{25,198909},--Song of Chi-Ji, Monk, Any [2]
 	};
 
 	LC2Txt_DemonHunterCC = {
