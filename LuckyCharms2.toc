@@ -1,18 +1,18 @@
 ## Interface: 90001
-## Title: LuckyCharms2 |cFFEE0000v9.0.0.10122020|r
+## Title: LuckyCharms2 |cFFEE0000v9.0.0.101420|r
 ## Notes: Makes a toolbar for setting the "charms" on raid and group targets.
 ## Notes-deDE: Macht eine Symbolleiste für die Einstellung der "Charme" auf RAID-und Gruppe-Ziele.
 ## Author: KetuSolo, tartarusspawn
 ## SavedVariables: LC2_Settings
 ## OptionalDeps: Masque
-## Version: v9.0.0.10122020
+## Version: v9.0.0.101420
 ## X-Date: 2020-10-12T20:00:00Z
 ## X-Email:
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/luckycharms2.aspx
 ## X-Category: MYADDONS_CATEGORY_RAID
 ## X-Help:
 ## X-OptionsFrame:
-## X-Curse-Packaged-Version: v9.0.0.10122020
+## X-Curse-Packaged-Version: v9.0.0.101420
 ## X-Curse-Project-Name: LuckyCharms2
 ## X-Curse-Project-ID: luckycharms2
 ## X-Curse-Repository-ID: wow/luckycharms2/mainline

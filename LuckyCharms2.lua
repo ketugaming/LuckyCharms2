@@ -11,7 +11,7 @@
  
  Author: Ketutastic
  ___
- Last Modified: Monday, October 12th 2020, 8:30:07 pm
+ Last Modified: Wednesday, October 14th 2020, 10:40:22 am
  
  Modified By: KetuSolo
  ___
@@ -337,7 +337,15 @@ function LuckyCharms.OnCharmClick(mouseButton, self)
                     LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 15 or -- Warlock Fear 
                     LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 16 or -- Druid Entangling Roots
                     LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 18 or -- Death Knight Death Grip
-                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 19 -- Monk Paralysis
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 19 or -- Monk Paralysis
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 24 or --Blinding Sleet, DK (Frost)
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 28 or --Chains of Ice, DK
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 25 or --Song of Chi-Ji, Monk
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 23 or --Blind, Rogue
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 26 or --Distract, Rogue
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 27 or --Ring of Frost, Mage
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 22 or --Wyvern Hatchet Toss, Hunter
+                    LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 29 --Steel Trap, Hunter
                 ) then
                     SetRaidTarget("target", charmNum);
                 --Target Unit Type Beasts
@@ -367,7 +375,8 @@ function LuckyCharms.OnCharmClick(mouseButton, self)
                         LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 9 or --Sap, Rogue
                         LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 13 or --Banish, Warlock
                         LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 14 or --Enslave Demon, Warlock
-                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 20 --Imprison, Demon Hunter
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 20 or --Imprison, Demon Hunter
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 21 --Turn Evil, Paladin
                     ) then
                         SetRaidTarget("target", charmNum);
                     else
@@ -385,7 +394,8 @@ function LuckyCharms.OnCharmClick(mouseButton, self)
                     if(
                         LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 6 or --Repentance, Paladin
                         LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 7 or --Shackle Undead, Priest
-                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 17 --Control Undead, DK
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 17 or --Control Undead, DK
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 21 --Turn Evil, Paladin
                     ) then
                         SetRaidTarget("target", charmNum);
                     else
@@ -458,7 +468,8 @@ function LuckyCharms.OnCharmClick(mouseButton, self)
                 --Target Unit Type Abbarition
                 elseif (uct ~= LC2TXT_UTYPE[14]) then
                     if(
-                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 13--Banish, Warlock
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 13 or --Banish, Warlock
+                        LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 21 --Turn Evil, Paladin
                     ) then
                         SetRaidTarget("target", charmNum);
                     else
@@ -504,162 +515,6 @@ function LuckyCharms.OnCharmClick(mouseButton, self)
                             53, 5);
                     end
                 end
-                
-                --[[
-                elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 2) then -- Druid Hibernate
-                    if (uct ~= LC2TXT_UTYPE[1] and uct ~= LC2TXT_UTYPE[2]) then -- Beasts, Dragonkin
-                        LuckyCharms.Message(
-                            "|cFFEE0000" ..
-                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
-                        UIErrorsFrame:AddMessage(
-                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
-                            53, 5);
-                    else
-                        SetRaidTarget("target", charmNum);
-                    end
-                --Target Unit Type 
-                elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 5) then -- Mage Polymorph
-                    if (uct ~= LC2TXT_UTYPE[1] and uct ~= LC2TXT_UTYPE[7] and
-                        uct ~= LC2TXT_UTYPE[8]) then -- Humanoid, Beast, Critter
-                        LuckyCharms.Message(
-                            "|cFFEE0000" ..
-                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
-                        UIErrorsFrame:AddMessage(
-                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
-                            53, 5);
-                    else
-                        SetRaidTarget("target", charmNum);
-                    end
-                --Target Unit Type 
-                elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 6) then -- Repentance (Talent), Paladin
-                    if (uct ~= LC2TXT_UTYPE[7] and uct ~= LC2TXT_UTYPE[6] and
-                        uct ~= LC2TXT_UTYPE[5] and uct ~= LC2TXT_UTYPE[3] and
-                        uct ~= LC2TXT_UTYPE[2]) then -- Humanoid, Undead, Dragonkin, Giant, Demon
-                        LuckyCharms.Message(
-                            "|cFFEE0000" ..
-                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
-                        UIErrorsFrame:AddMessage(
-                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
-                            53, 5);
-                    else
-                        SetRaidTarget("target", charmNum);
-                    end
-                --Target Unit Type 
-                elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 7) then -- Shackle Undead, Priest
-                    if (uct ~= LC2TXT_UTYPE[6]) then -- Undead
-                        LuckyCharms.Message(
-                            "|cFFEE0000" ..
-                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
-                        UIErrorsFrame:AddMessage(
-                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
-                            53, 5);
-                    else
-                        SetRaidTarget("target", charmNum);
-                    end
-                --Target Unit Type 
-                elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 8) then -- Mind Control, Priest
-                    if (uct ~= LC2TXT_UTYPE[7]) then -- Humanoid
-                        LuckyCharms.Message(
-                            "|cFFEE0000" ..
-                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
-                        UIErrorsFrame:AddMessage(
-                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
-                            53, 5);
-                    else
-                        SetRaidTarget("target", charmNum);
-                    end
-                --Target Unit Type 
-                elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 9) then -- Sap, Rogue
-                    if (uct ~= LC2TXT_UTYPE[7] and uct ~= LC2TXT_UTYPE[1] and
-                        uct ~= LC2TXT_UTYPE[3] and uct ~= LC2TXT_UTYPE[2]) then -- Humanoid, Beasts, Demons, Dragonkin
-                        LuckyCharms.Message(
-                            "|cFFEE0000" ..
-                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
-                        UIErrorsFrame:AddMessage(
-                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
-                            53, 5);
-                    else
-                        SetRaidTarget("target", charmNum);
-                    end
-                elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 10) then -- Hex, Shaman
-                    if (uct ~= LC2TXT_UTYPE[1] and uct ~= LC2TXT_UTYPE[7]) then -- Humanoid, Beast
-                        LuckyCharms.Message(
-                            "|cFFEE0000" ..
-                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
-                        UIErrorsFrame:AddMessage(
-                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
-                            53, 5);
-                    else
-                        SetRaidTarget("target", charmNum);
-                    end
-                elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 11) then -- Shaman Bind Elemental
-                    if (uct ~= LC2TXT_UTYPE[4]) then -- Elemental
-                        LuckyCharms.Message(
-                            "|cFFEE0000" ..
-                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
-                        UIErrorsFrame:AddMessage(
-                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
-                            53, 5);
-                    else
-                        SetRaidTarget("target", charmNum);
-                    end
-                elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 12) then -- Seduction, Warlock
-                    if (uct ~= LC2TXT_UTYPE[7]) then -- Humanoid
-                        LuckyCharms.Message(
-                            "|cFFEE0000" ..
-                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
-                        UIErrorsFrame:AddMessage(
-                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
-                            53, 5);
-                    else
-                        SetRaidTarget("target", charmNum);
-                    end
-                elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 13) then -- Banish, Warlock
-                    if (uct ~= LC2TXT_UTYPE[3] and uct ~= LC2TXT_UTYPE[4]) then -- Demon, Elemental
-                        LuckyCharms.Message(
-                            "|cFFEE0000" ..
-                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
-                        UIErrorsFrame:AddMessage(
-                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
-                            53, 5);
-                    else
-                        SetRaidTarget("target", charmNum);
-                    end
-                elseif (LC2_Settings[LC2Profile].charmcc[charmNum]["ccid"] == 14) then -- Enslave Demon
-                    if (uct ~= LC2TXT_UTYPE[3]) then -- Demon
-                        LuckyCharms.Message(
-                            "|cFFEE0000" ..
-                                LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS .. "|r");
-                        UIErrorsFrame:AddMessage(
-                            LC2_Settings[LC2Profile].charmcc[charmNum]["name"] ..
-                                " " .. SPELL_FAILED_BAD_TARGETS, 1.0, 0.0, 0.0,
-                            53, 5);
-                    else
-                        SetRaidTarget("target", charmNum);
-                    end
-                end
-                ]]
             else
                 SetRaidTarget("target", charmNum);
             end
